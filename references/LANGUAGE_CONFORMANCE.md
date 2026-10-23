@@ -272,11 +272,11 @@ closed-edge metrics. This is a build/export check, not the entire differential
 suite rerun against that separate executable. Roof WASM rebuilding is not part
 of this workflow; existing generated assets are tested.
 
-The current ignored-lockfile policy is preserved: CI uses npm install rather
-than npm ci or a new committed lockfile. Transitive dependency resolution is
-therefore not fully reproducible; changing that policy remains a separate
-decision. Workflow syntax/action inputs are checked locally with actionlint;
-the first hosted Actions run is deliberately deferred until a future push.
+Root and extension dependency lockfiles are committed, and CI uses `npm ci`
+to install their pinned npm dependency graphs. Native build tools and system
+libraries still depend on the host environment. Workflow syntax/action inputs
+were checked locally with actionlint; the first hosted Actions run remains
+deferred until a future push.
 
 ### Standalone Distribution Checkpoint
 

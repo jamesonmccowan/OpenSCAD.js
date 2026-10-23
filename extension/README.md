@@ -272,8 +272,8 @@ The build currently depends on the parent repository and its installed runtime
 dependencies and reference font assets. From the parent directory:
 
 ```sh
-npm install
-npm --prefix extension install
+npm ci
+npm --prefix extension ci
 npm --prefix extension run build
 npm --prefix extension test
 npm --prefix extension run test:occt

@@ -5,7 +5,6 @@
 node_modules/
 test-results/
 playwright-report/
-package-lock.json
 dist/
 .dist-build-*/
 .release-check/

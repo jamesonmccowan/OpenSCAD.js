@@ -29,7 +29,7 @@ transparent PNG sizes from [the SCAD source](branding/icon.scad).
 Install dependencies, then serve the checkout over HTTP:
 
 ```sh
-npm install
+npm ci
 npm run build:editor
 python3 -m http.server 4173
 ```
@@ -121,7 +121,7 @@ reference overlays and standalone STEP/3MF viewing remain extension-only.
 
 ```sh
 git submodule update --init --recursive
-npm install
+npm ci
 npm run build
 npx playwright install
 npm run test:distribution
@@ -195,7 +195,7 @@ of the studio. Internal `runtime/` paths are not public API. The generated
 artifact [README template](scripts/distribution/README.md) documents projects,
 cleanup, overrides, language restrictions, and redistribution requirements.
 
-Build from the development checkout with its pinned Liberation font available. The resulting artifact needs neither the reference checkout nor `node_modules` at runtime. `distribution-manifest.json` inventories selected dependency versions, source URLs and file hashes; repeated local builds are checked for identical inventories. Dependency resolution during development remains subject to the existing ignored-lockfile policy.
+Build from the development checkout with its pinned Liberation font available. The resulting artifact needs neither the reference checkout nor `node_modules` at runtime. `distribution-manifest.json` inventories selected dependency versions, source URLs and file hashes; repeated local builds are checked for identical inventories. Development and CI installs use the committed root and extension lockfiles with `npm ci`.
 
 Distribution tests install a packed tarball offline into a temporary clean consumer, exercise the public API/worker/viewer/CLI and text/roofs, and test nested-path studio/API loading on all three browser engines with all requests outside the artifact blocked. Desktop/mobile screenshots and geometry-pixel changes verify rendering; imports, exports and fonts are exercised. Browser prerequisites are the same as the full test gate below. Run `npm run test:browser -- tests/distribution.spec.js --project=chromium` for a single engine.
 
@@ -279,7 +279,7 @@ The script builds locally at `references/openscad/build/openscad`, checks the pi
 
 ```sh
 git submodule update --init --recursive
-npm install
+npm ci
 npx playwright install chromium firefox webkit
 npm run setup:reference
 npm run test:all
@@ -292,6 +292,15 @@ the native differential tests fail with `ENOENT`. Keep the submodule at the
 repository's pinned revision rather than adding the latest upstream revision.
 The build and setup scripts under `scripts/` are source files and must be
 included when copying or committing the repository.
+
+Commit both `package-lock.json` and `extension/package-lock.json`. Use Node 22
+and npm 10 for routine installs to avoid unnecessary lockfile-format churn.
+`npm ci` installs the locked dependency graph without rewriting either the
+manifest or lockfile, and fails if they disagree. Use `npm install` (or
+`npm --prefix extension install`) when intentionally adding or updating
+dependencies, then commit the affected manifest and lockfile together.
+Do not delete or regenerate lockfiles just to resolve merge conflicts;
+reconcile the intended dependency changes and review the resulting diff.
 
 `test:all` runs the Node/native suites (including clean packed-consumer checks), all three browser projects (four workers total), and strict public TypeScript declaration checks in sequence, stopping at the first failure. `npm test` invokes browser tests directly; run `npm run build` first so distribution fixtures exist. Individual aggregate stages are `test:node`, `test:browser`, and `test:types`; npm's `test:browser` automatically builds the artifact. Node tests disable forced terminal colors so child-process output comparisons stay stable.
 

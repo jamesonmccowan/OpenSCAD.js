@@ -15,7 +15,7 @@ The studio now uses the shared worker-backed core; the old in-page parser/interp
 Use Node.js 22 or another version supported by the installed Playwright release. The Node-only tests also passed on the available system Node 18.19.1, but Playwright requires Node 20 or newer and installed optional tooling declares additional requirements.
 
 ```sh
-npm install
+npm ci
 npx playwright install chromium firefox webkit
 npm run test:all
 ```
@@ -36,8 +36,8 @@ npm exec --yes --package=node@22 -- npm run test:all
 
 Playwright manages its local HTTP server. npm's `test:browser` builds the
 standalone artifact first; direct `npm test`/Playwright invocations need
-`npm run build` before including distribution fixtures. The lockfile remains
-ignored/untracked by policy; transitive resolution is not fully reproducible.
+`npm run build` before including distribution fixtures. Root and extension
+lockfiles are committed; development and CI use `npm ci` for locked installs.
 Latest local full gate (2026-10-12): 368 Node tests, 216 browser tests (72 per engine) and strict declarations.
 The root CI workflow is configured, but hosted runner verification is deferred.
 
@@ -110,7 +110,7 @@ Native checks cover convex/concave, holed, multiple-hole and disconnected profil
 Rebuild from the checked-in C++ source and pinned npm dependency:
 
 ```sh
-npm install
+npm ci
 # Activate Emscripten 4.0.23; Boost 1.83 headers were used for verification.
 BOOST_INCLUDE_DIR=/usr/include npm run build:roof
 npm run test:text-roof
@@ -470,9 +470,11 @@ dependency tree without a new review or make a blanket Apache-only claim.
 
 Normal builds consume prebuilt kernels and do not require a C++/Emscripten
 toolchain. The separate roof/OCCT rebuild reviews used pinned toolchains as
-documented in their provenance records. Dependency lockfiles remain ignored;
-reviewed binary hash guards and selected artifact inventories do not imply a
-fully locked development-tool dependency graph.
+documented in their provenance records. Committed root and extension lockfiles
+pin the npm dependency graphs installed by `npm ci`; they do not pin system
+libraries, native compiler toolchains or independently downloaded sources.
+Reviewed binary hash guards and selected artifact inventories provide separate,
+bounded checks of runtime inputs.
 
 ## Remaining Feasibility Gates
 

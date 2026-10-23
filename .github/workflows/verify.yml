@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install JavaScript Dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: Install Headless Oracle Build Dependencies
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -64,7 +64,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install JavaScript Dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: Install Browser And Host Dependencies
         run: npx playwright install --with-deps ${{ matrix.browser }}
       - name: Run Shared Browser Fixtures
@@ -95,8 +95,8 @@ jobs:
           node-version: '22'
       - name: Install Root And Extension Dependencies
         run: |
-          npm install --no-audit --no-fund
-          npm --prefix extension install --no-audit --no-fund
+          npm ci --no-audit --no-fund
+          npm --prefix extension ci --no-audit --no-fund
       - name: Install Chromium And Host Dependencies
         run: npx playwright install --with-deps chromium
       - name: Build Extension And Parent Distribution
