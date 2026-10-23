@@ -258,9 +258,9 @@ failures; native tests are not silently skipped. Browser matrix jobs obtain the
 same reference font assets, install their engine and host dependencies, and run
 the shared suite with two workers each. Per-engine reports/screenshots/failure
 traces are uploaded for seven days, even after failures.
-The WebKit job uses the main Ubuntu archive over HTTPS instead of the runner's
-Azure mirror after hosted dependency downloads exhausted the job timeout before
-tests started. Browser/host installation is bounded to eight minutes and the
+All browser matrix jobs use the main Ubuntu archive over HTTPS instead of the
+runner's Azure mirror after hosted dependency downloads exhausted installation
+timeouts before tests started. Browser/host installation is bounded to eight minutes and the
 build/test step to ten minutes within the twenty-minute browser job budget.
 
 The reference is a pinned submodule declared in the root .gitmodules file.
@@ -279,10 +279,11 @@ of this workflow; existing generated assets are tested.
 Root and extension dependency lockfiles are committed, and CI uses `npm ci`
 to install their pinned npm dependency graphs. Native build tools and system
 libraries still depend on the host environment. Workflow syntax/action inputs
-were checked locally with actionlint. The 2026-10-23 hosted run on the
-`fix/github-actions` branch passed Node/native/types, Firefox and the extension
-job. Chromium exposed a cancellation-test timer race; WebKit timed out while
-installing host packages. Their repairs still require a new hosted run.
+were checked locally with actionlint. The 2026-10-23 hosted run for commit
+`7fa38cb` on `fix/github-actions` passed Node/native/types, WebKit and the
+extension job. Chromium and Firefox timed out installing host packages from
+the Azure mirror, before their tests started. Extending the mirror change to
+those engines still requires a new hosted run.
 
 ### Standalone Distribution Checkpoint
 

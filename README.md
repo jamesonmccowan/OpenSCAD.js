@@ -285,6 +285,11 @@ npm run setup:reference
 npm run test:all
 ```
 
+On displayless Linux (including SSH sessions without `DISPLAY`), replace the
+last command with `xvfb-run -a npm run test:all`. Browser headless mode alone
+does not provide Firefox's required WebGL context on these hosts; many tests
+can fail together even though the compiler and other browsers pass.
+
 For a fresh checkout, install the native build dependencies described above
 before `setup:reference`. Initializing the submodule supplies source and fonts,
 but does not build `references/openscad/build/openscad`; without that executable,

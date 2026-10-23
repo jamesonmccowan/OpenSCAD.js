@@ -65,8 +65,7 @@ jobs:
           node-version: '22'
       - name: Install JavaScript Dependencies
         run: npm ci --no-audit --no-fund
-      - name: Use Main Ubuntu Archive For WebKit Dependencies
-        if: matrix.browser == 'webkit'
+      - name: Use Main Ubuntu Archive For Browser Dependencies
         run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
       - name: Install Browser And Host Dependencies
         timeout-minutes: 8
