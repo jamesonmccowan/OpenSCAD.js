@@ -1,0 +1,1971 @@
+{
+  "schemaVersion": 1,
+  "oracleVersion": "OpenSCAD version 2026.10.02",
+  "oracleRevision": "7d44e5796cd489bcbfb8cef0720abe4db60ce35e",
+  "projectRevision": "9ce84696de039654eead2225975cd3c244be45df",
+  "implementationPatchSha256": "4c3ac99ab9e28ce8979efcfbddbe6251faaf2cab988bf45b5bf4de6ee9f6cdb2",
+  "implementationDirty": true,
+  "runtime": {
+    "node": "v18.19.1",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "backend": "manifold-3d@3.5.4",
+  "nativeBackend": "Manifold",
+  "capabilities": {
+    "profile": "openscad-2026.10.02",
+    "status": "partial",
+    "syntax": [
+      "assignments",
+      "modules",
+      "functions",
+      "anonymous-functions:closures",
+      "objects:experimental-object-function",
+      "parent_module",
+      "textmetrics:liberation-sans",
+      "fontmetrics:liberation-sans",
+      "built-in-functions:cross-lookup-search-chr-ord-rands-version_num",
+      "hexadecimal-integer-literals",
+      "if",
+      "for",
+      "let",
+      "ranges",
+      "vectors",
+      "indexing",
+      "ternary",
+      "modifiers",
+      "include:project",
+      "use:project",
+      "matrix-multiplication",
+      "defines:api",
+      "numeric-prefix-identifiers:deprecated",
+      "list-comprehensions:for-if-each-let",
+      "named-built-in-function-arguments"
+    ],
+    "geometry": [
+      "cube",
+      "sphere:orig",
+      "cylinder",
+      "square",
+      "circle",
+      "polygon",
+      "polyhedron",
+      "import:stl",
+      "text:liberation-sans-latin",
+      "roof:experimental-voronoi-straight",
+      "linear_extrude",
+      "rotate_extrude",
+      "projection",
+      "minkowski:3d",
+      "offset:2d",
+      "resize:2d-3d",
+      "fill:2d",
+      "union",
+      "difference",
+      "intersection",
+      "hull",
+      "translate",
+      "rotate",
+      "scale",
+      "mirror",
+      "multmatrix:3d"
+    ],
+    "unsupported": [
+      "minkowski:2d",
+      "object-methods",
+      "text:complex-shaping-or-other-fonts",
+      "surface",
+      "non-stl-imports",
+      "multmatrix:2d",
+      "linear_extrude:auto-slices",
+      "linear_extrude:v",
+      "linear_extrude:segments",
+      "callable-expressions",
+      "c-style-for",
+      "intersection_for",
+      "mixed-type-or-vector-ordering"
+    ]
+  },
+  "phase": "preview-render-and-native-stl-baseline",
+  "context": {
+    "modes": [
+      "preview",
+      "render"
+    ],
+    "time": 0,
+    "experimental": [],
+    "defines": {},
+    "sourceRoot": "references/scad sample files",
+    "assetPolicy": "authorized filesystem resolver; no synthesized assets"
+  },
+  "limits": {
+    "timeoutMs": 15000,
+    "maxSteps": 100000,
+    "maxTriangles": 1000000
+  },
+  "warning": "Inventory includes inactive definitions; native preview is echo evaluation only. Bounds and volume do not establish shape equivalence or printability.",
+  "models": [
+    {
+      "file": "references/scad sample files/caster mount.scad",
+      "sourceSha256": "3c6b8e24cefbb035d68e1601ef3b3f913e4fb3217612d56691d265e586905679",
+      "inputs": [
+        {
+          "path": "caster mount.scad",
+          "kind": "source",
+          "bytes": 3105,
+          "sha256": "3c6b8e24cefbb035d68e1601ef3b3f913e4fb3217612d56691d265e586905679"
+        }
+      ],
+      "dependencies": [
+        "caster mount.scad"
+      ],
+      "modules": [
+        "bearing",
+        "caster",
+        "caster_mount",
+        "cube",
+        "cylinder",
+        "difference",
+        "rotate",
+        "translate",
+        "union"
+      ],
+      "unsupportedModules": [],
+      "imports": [],
+      "javascript": {
+        "status": "evaluated",
+        "warnings": []
+      },
+      "render": {
+        "status": "success",
+        "empty": false,
+        "volume": 20630.540668889542,
+        "bounds": [
+          [
+            -31,
+            -14,
+            51
+          ],
+          [
+            31,
+            14,
+            88.5
+          ]
+        ],
+        "dependencies": [
+          "caster mount.scad"
+        ],
+        "diagnostics": [],
+        "echoes": [],
+        "triangles": 1114,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        },
+        "export": {
+          "volume": 20630.540593356847,
+          "bounds": [
+            [
+              -31,
+              -14,
+              51
+            ],
+            [
+              31,
+              14,
+              88.5
+            ]
+          ],
+          "triangles": 1114,
+          "stlSha256": "e792f848e10572d31fa51464807017ee7ea4ff17d63f747ac04c252cff63c1cd",
+          "bytes": 55784
+        }
+      },
+      "native": {
+        "operation": "echo-evaluation",
+        "status": "success",
+        "diagnostics": "",
+        "echoes": []
+      },
+      "preview": {
+        "status": "success",
+        "empty": false,
+        "volume": 20630.540668889542,
+        "bounds": [
+          [
+            -31,
+            -14,
+            51
+          ],
+          [
+            31,
+            14,
+            88.5
+          ]
+        ],
+        "dependencies": [
+          "caster mount.scad"
+        ],
+        "diagnostics": [],
+        "echoes": [],
+        "triangles": 1114,
+        "overlays": {
+          "background": 2,
+          "debug": 0
+        }
+      },
+      "nativeRenderEvaluation": {
+        "operation": "echo-evaluation",
+        "status": "success",
+        "diagnostics": "",
+        "echoes": []
+      },
+      "nativeRender": {
+        "status": "success",
+        "diagnostics": [],
+        "volume": 20630.540589296495,
+        "bounds": [
+          [
+            -31,
+            -14,
+            51
+          ],
+          [
+            31,
+            14,
+            88.5
+          ]
+        ],
+        "triangles": 1100,
+        "stlSha256": "b9aa567768ea0c237ca8494d0d13688b9c1dc1be9c3c5f4468c5d57eb7aeb805",
+        "bytes": 55084
+      },
+      "comparison": {
+        "volumeAbsoluteDifference": 0.000004060351784573868,
+        "volumeRelativeDifference": 1.9681267037086042e-10,
+        "maxBoundsDifference": 0,
+        "shapeEquivalence": "not-assessed"
+      }
+    },
+    {
+      "file": "references/scad sample files/hand.scad",
+      "sourceSha256": "53590a21e11a5a7a31fcd74f263414454c55753311fca3f1034c2a8841ed792a",
+      "capture": {
+        "date": "2026-10-19",
+        "reason": "Scoped hand-model recapture for release gate: all non-input result fields match the prior capture",
+        "projectRevision": "3c11ed3b40a142a7b3deffb04d146451ec417f78",
+        "implementationPatchSha256": "b31e92d8c1b71d26c110778a7b5b329363c9ffdc00b3611cf3728492aefdca08",
+        "implementationDirty": true,
+        "runtime": { "node": "v22.23.3", "platform": "linux", "arch": "x64" },
+        "oracleVersion": "OpenSCAD version 2026.10.02",
+        "oracleRevision": "7d44e5796cd489bcbfb8cef0720abe4db60ce35e",
+        "backend": "manifold-3d@3.5.4",
+        "nativeBackend": "Manifold",
+        "context": {
+          "modes": ["preview", "render"],
+          "time": 0,
+          "experimental": [],
+          "defines": {},
+          "sourceRoot": "references/scad sample files",
+          "assetPolicy": "authorized filesystem resolver; no synthesized assets"
+        },
+        "limits": { "timeoutMs": 15000, "maxSteps": 100000, "maxTriangles": 1000000 }
+      },
+      "inputs": [
+        {
+          "path": "hand.scad",
+          "kind": "source",
+          "bytes": 4683,
+          "sha256": "53590a21e11a5a7a31fcd74f263414454c55753311fca3f1034c2a8841ed792a"
+        }
+      ],
+      "dependencies": [
+        "hand.scad"
+      ],
+      "modules": [
+        "actuator",
+        "color",
+        "cube",
+        "cylinder",
+        "difference",
+        "finger_1",
+        "intersection",
+        "mock_hand",
+        "rotate",
+        "stick",
+        "translate",
+        "union"
+      ],
+      "unsupportedModules": [],
+      "imports": [],
+      "javascript": {
+        "status": "evaluated",
+        "warnings": []
+      },
+      "render": {
+        "status": "success",
+        "empty": false,
+        "volume": 20068.933887660143,
+        "bounds": [
+          [
+            -7.5,
+            -15.62225595933878,
+            -10.016890655432865
+          ],
+          [
+            10,
+            14.733792584604485,
+            173.99975156784058
+          ]
+        ],
+        "dependencies": [
+          "hand.scad"
+        ],
+        "diagnostics": [],
+        "echoes": [],
+        "triangles": 20638,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        },
+        "export": {
+          "volume": 20068.933405050408,
+          "bounds": [
+            [
+              -7.5,
+              -15.6222562789917,
+              -10.016890525817871
+            ],
+            [
+              10,
+              14.733792304992676,
+              173.999755859375
+            ]
+          ],
+          "triangles": 20532,
+          "stlSha256": "7db1730123f1debdbaceea9f18f1b4a9ccfb649a710a7cd2be3ffdd12073e4a1",
+          "bytes": 1026684
+        }
+      },
+      "native": {
+        "operation": "echo-evaluation",
+        "status": "success",
+        "diagnostics": "",
+        "echoes": []
+      },
+      "preview": {
+        "status": "success",
+        "empty": false,
+        "volume": 20068.933887660143,
+        "bounds": [
+          [
+            -7.5,
+            -15.62225595933878,
+            -10.016890655432865
+          ],
+          [
+            10,
+            14.733792584604485,
+            173.99975156784058
+          ]
+        ],
+        "dependencies": [
+          "hand.scad"
+        ],
+        "diagnostics": [],
+        "echoes": [],
+        "triangles": 20638,
+        "overlays": {
+          "background": 1,
+          "debug": 0
+        }
+      },
+      "nativeRenderEvaluation": {
+        "operation": "echo-evaluation",
+        "status": "success",
+        "diagnostics": "",
+        "echoes": []
+      },
+      "nativeRender": {
+        "status": "success",
+        "diagnostics": [],
+        "volume": 20068.933409891706,
+        "bounds": [
+          [
+            -7.5,
+            -15.6222562789917,
+            -10.016890525817871
+          ],
+          [
+            10,
+            14.733792304992676,
+            173.999755859375
+          ]
+        ],
+        "triangles": 20380,
+        "stlSha256": "23a4f946abf8733f52405dd5f7cb7ff1f0848f362f114c6030dfaa7fd79ed3ae",
+        "bytes": 1019084
+      },
+      "comparison": {
+        "volumeAbsoluteDifference": 0.0000048412985051982105,
+        "volumeRelativeDifference": 2.4123347296633115e-10,
+        "maxBoundsDifference": 0,
+        "shapeEquivalence": "not-assessed"
+      }
+    },
+    {
+      "file": "references/scad sample files/mecanum.scad",
+      "sourceSha256": "ff6986a3439850cbdd68eeae757c042b9fbf861fb4a64be68732b3b46f0a1864",
+      "inputs": [
+        {
+          "path": "mecanum.scad",
+          "kind": "source",
+          "bytes": 5707,
+          "sha256": "ff6986a3439850cbdd68eeae757c042b9fbf861fb4a64be68732b3b46f0a1864"
+        },
+        {
+          "path": "parts.scad",
+          "kind": "source",
+          "bytes": 22554,
+          "sha256": "4c3873f079edfc1b4efd3da1b186cd5d4a16bf8001b716396ed148a84a4b80bc"
+        }
+      ],
+      "dependencies": [
+        "mecanum.scad",
+        "parts.scad"
+      ],
+      "modules": [
+        "bearing",
+        "comparator_LM393",
+        "cube",
+        "cylinder",
+        "dc_motor",
+        "dewalt_battery",
+        "dewalt_battery_mount",
+        "difference",
+        "display",
+        "encoder",
+        "hdmi_micro_plug",
+        "hex",
+        "import",
+        "large_voltage_regulator",
+        "linear_extrude",
+        "mirror",
+        "motor_assembly",
+        "omni_wheel",
+        "parts_mount",
+        "pico",
+        "polygon",
+        "pump",
+        "pump_mount",
+        "pump_nozzle",
+        "rotate",
+        "tooth",
+        "translate",
+        "u_out_pipe",
+        "union",
+        "usb_micro_plug",
+        "voltage_switch"
+      ],
+      "unsupportedModules": [],
+      "imports": [
+        {
+          "file": "../stl/dewalt_battery_top.stl",
+          "source": "parts.scad",
+          "exists": false
+        }
+      ],
+      "javascript": {
+        "status": "evaluated",
+        "warnings": [
+          {
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ]
+      },
+      "render": {
+        "status": "success",
+        "empty": false,
+        "volume": 192177.9287436379,
+        "bounds": [
+          [
+            -85,
+            -62,
+            -11
+          ],
+          [
+            85,
+            62,
+            48
+          ]
+        ],
+        "dependencies": [
+          "mecanum.scad",
+          "parts.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ],
+        "echoes": [],
+        "triangles": 8272,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        },
+        "export": {
+          "volume": 192177.93564137135,
+          "bounds": [
+            [
+              -85,
+              -62,
+              -11
+            ],
+            [
+              85,
+              62,
+              48
+            ]
+          ],
+          "triangles": 8272,
+          "stlSha256": "d210af3e405f2421fe9cb8dc940dfef010ba1cd7c16366468a49ab2cb69d79f1",
+          "bytes": 413684
+        }
+      },
+      "native": {
+        "operation": "echo-evaluation",
+        "status": "diagnostics",
+        "diagnostics": "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228",
+        "echoes": []
+      },
+      "preview": {
+        "status": "error",
+        "dependencies": [
+          "mecanum.scad",
+          "parts.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          },
+          {
+            "severity": "error",
+            "code": "restricted-path",
+            "message": "Path escapes project root: '../stl/dewalt_battery_top.stl'",
+            "location": {
+              "file": "parts.scad",
+              "offset": 16976,
+              "line": 719,
+              "column": 5
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "nativeRenderEvaluation": {
+        "operation": "echo-evaluation",
+        "status": "diagnostics",
+        "diagnostics": "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228",
+        "echoes": []
+      },
+      "nativeRender": {
+        "status": "success",
+        "diagnostics": [
+          "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228",
+          "WARNING: Can't open import file '<repo>/references/scad sample files/../stl/dewalt_battery_top.stl', import() at line 719"
+        ],
+        "volume": 192177.93569701636,
+        "bounds": [
+          [
+            -85,
+            -62,
+            -11
+          ],
+          [
+            85,
+            62,
+            48
+          ]
+        ],
+        "triangles": 8240,
+        "stlSha256": "2f3fc508f8c88a2593219f2a6390e4e51f2cff439c9386b374ad268d502f81f5",
+        "bytes": 412084
+      },
+      "comparison": {
+        "volumeAbsoluteDifference": 0.00005564501043409109,
+        "volumeRelativeDifference": 2.8954942320652165e-10,
+        "maxBoundsDifference": 0,
+        "shapeEquivalence": "not-assessed"
+      }
+    },
+    {
+      "file": "references/scad sample files/numbers_stencil.scad",
+      "sourceSha256": "145f8913bbdb7a1f5e5a742d3d4b9219456cdc53bd79b9f44500b606c931bc88",
+      "inputs": [
+        {
+          "path": "numbers_stencil.scad",
+          "kind": "source",
+          "bytes": 2878,
+          "sha256": "145f8913bbdb7a1f5e5a742d3d4b9219456cdc53bd79b9f44500b606c931bc88"
+        }
+      ],
+      "dependencies": [
+        "numbers_stencil.scad"
+      ],
+      "modules": [
+        "cube",
+        "cylinder",
+        "difference",
+        "intersection",
+        "mirror",
+        "numbers",
+        "numeral",
+        "roof",
+        "scale",
+        "scale_guide",
+        "screw_hole",
+        "text",
+        "translate",
+        "union"
+      ],
+      "unsupportedModules": [],
+      "imports": [],
+      "javascript": {
+        "status": "blocked",
+        "code": "experimental-disabled",
+        "message": "roof requires explicit experimental=['roof']",
+        "location": {
+          "file": "numbers_stencil.scad",
+          "offset": 728,
+          "line": 47,
+          "column": 5
+        }
+      },
+      "render": {
+        "status": "error",
+        "dependencies": [
+          "numbers_stencil.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "code": "experimental-disabled",
+            "message": "roof requires explicit experimental=['roof']",
+            "location": {
+              "file": "numbers_stencil.scad",
+              "offset": 728,
+              "line": 47,
+              "column": 5
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "native": {
+        "operation": "echo-evaluation",
+        "status": "diagnostics",
+        "diagnostics": "WARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47\nWARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47\nWARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47\nWARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47",
+        "echoes": []
+      },
+      "preview": {
+        "status": "error",
+        "dependencies": [
+          "numbers_stencil.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "code": "experimental-disabled",
+            "message": "roof requires explicit experimental=['roof']",
+            "location": {
+              "file": "numbers_stencil.scad",
+              "offset": 728,
+              "line": 47,
+              "column": 5
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "nativeRenderEvaluation": {
+        "operation": "echo-evaluation",
+        "status": "diagnostics",
+        "diagnostics": "WARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47\nWARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47\nWARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47\nWARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47",
+        "echoes": []
+      },
+      "nativeRender": {
+        "status": "empty",
+        "diagnostics": "WARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47\nWARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47\nWARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47\nWARNING: Experimental builtin module 'roof' is not enabled in file numbers_stencil.scad, line 47\nWARNING: Ignoring unknown module 'roof' in file numbers_stencil.scad, line 47\nCurrent top level object is empty.",
+        "exitCode": 1
+      }
+    },
+    {
+      "file": "references/scad sample files/parts.scad",
+      "sourceSha256": "4c3873f079edfc1b4efd3da1b186cd5d4a16bf8001b716396ed148a84a4b80bc",
+      "inputs": [
+        {
+          "path": "parts.scad",
+          "kind": "source",
+          "bytes": 22554,
+          "sha256": "4c3873f079edfc1b4efd3da1b186cd5d4a16bf8001b716396ed148a84a4b80bc"
+        }
+      ],
+      "dependencies": [
+        "parts.scad"
+      ],
+      "modules": [
+        "cube",
+        "cylinder",
+        "dewalt_battery",
+        "difference",
+        "hdmi_micro_plug",
+        "hex",
+        "import",
+        "linear_extrude",
+        "polygon",
+        "pump",
+        "pump_mount",
+        "pump_nozzle",
+        "rotate",
+        "tooth",
+        "translate",
+        "u_out_pipe",
+        "union",
+        "usb_micro_plug"
+      ],
+      "unsupportedModules": [],
+      "imports": [
+        {
+          "file": "../stl/dewalt_battery_top.stl",
+          "source": "parts.scad",
+          "exists": false
+        }
+      ],
+      "javascript": {
+        "status": "evaluated",
+        "warnings": [
+          {
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ]
+      },
+      "render": {
+        "status": "success",
+        "empty": false,
+        "volume": 19554.707912889025,
+        "bounds": [
+          [
+            -19.5,
+            -19.5,
+            7
+          ],
+          [
+            19.5,
+            25.55,
+            70
+          ]
+        ],
+        "dependencies": [
+          "parts.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ],
+        "echoes": [],
+        "triangles": 2488,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        },
+        "export": {
+          "volume": 19554.70772567099,
+          "bounds": [
+            [
+              -19.5,
+              -19.5,
+              7
+            ],
+            [
+              19.5,
+              25.549999237060547,
+              70
+            ]
+          ],
+          "triangles": 2488,
+          "stlSha256": "baa2e451c6213e8efc7587ef2a5cacc2265f582c4c55d324b09cb2843a5fa79c",
+          "bytes": 124484
+        }
+      },
+      "native": {
+        "operation": "echo-evaluation",
+        "status": "diagnostics",
+        "diagnostics": "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228",
+        "echoes": []
+      },
+      "preview": {
+        "status": "success",
+        "empty": false,
+        "volume": 19554.707912889025,
+        "bounds": [
+          [
+            -19.5,
+            -19.5,
+            7
+          ],
+          [
+            19.5,
+            25.55,
+            70
+          ]
+        ],
+        "dependencies": [
+          "parts.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ],
+        "echoes": [],
+        "triangles": 2488,
+        "overlays": {
+          "background": 3,
+          "debug": 0
+        }
+      },
+      "nativeRenderEvaluation": {
+        "operation": "echo-evaluation",
+        "status": "diagnostics",
+        "diagnostics": "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228",
+        "echoes": []
+      },
+      "nativeRender": {
+        "status": "success",
+        "diagnostics": [
+          "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228"
+        ],
+        "volume": 19554.707734449577,
+        "bounds": [
+          [
+            -19.5,
+            -19.5,
+            7
+          ],
+          [
+            19.5,
+            25.549999237060547,
+            70
+          ]
+        ],
+        "triangles": 2476,
+        "stlSha256": "bc9ddc4b0c78de012a2fffaebe2bf2991c92d46d6758e690de4e98d74fd73805",
+        "bytes": 123884
+      },
+      "comparison": {
+        "volumeAbsoluteDifference": 0.000008778588380664587,
+        "volumeRelativeDifference": 4.4892455054182816e-10,
+        "maxBoundsDifference": 0,
+        "shapeEquivalence": "not-assessed"
+      }
+    },
+    {
+      "file": "references/scad sample files/pico.scad",
+      "sourceSha256": "f90e3badca99bdb3044eb26a14005b4a07032ef98926bf50cd86195ed588601a",
+      "inputs": [
+        {
+          "path": "import-base.stl",
+          "kind": "asset",
+          "bytes": 2384,
+          "sha256": "6f07436a1a34e4d978f0b44fb2f545517c7eb35f69d4a4c3694cd561aa1e6546"
+        },
+        {
+          "path": "parts.scad",
+          "kind": "source",
+          "bytes": 22554,
+          "sha256": "4c3873f079edfc1b4efd3da1b186cd5d4a16bf8001b716396ed148a84a4b80bc"
+        },
+        {
+          "path": "pico.scad",
+          "kind": "source",
+          "bytes": 1091,
+          "sha256": "f90e3badca99bdb3044eb26a14005b4a07032ef98926bf50cd86195ed588601a"
+        }
+      ],
+      "dependencies": [
+        "pico.scad",
+        "parts.scad"
+      ],
+      "modules": [
+        "cube",
+        "cylinder",
+        "dewalt_battery",
+        "difference",
+        "hdmi_micro_plug",
+        "hex",
+        "import",
+        "linear_extrude",
+        "polygon",
+        "pump",
+        "pump_mount",
+        "pump_nozzle",
+        "rotate",
+        "sw",
+        "tooth",
+        "translate",
+        "u_out_pipe",
+        "union",
+        "usb_micro_plug"
+      ],
+      "unsupportedModules": [],
+      "imports": [
+        {
+          "file": "../stl/dewalt_battery_top.stl",
+          "source": "parts.scad",
+          "exists": false
+        },
+        {
+          "file": "import-base.stl",
+          "source": "pico.scad",
+          "exists": true
+        }
+      ],
+      "javascript": {
+        "status": "evaluated",
+        "warnings": [
+          {
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ]
+      },
+      "render": {
+        "status": "success",
+        "empty": false,
+        "volume": 2625.116202153438,
+        "bounds": [
+          [
+            -9.52,
+            -7.720000000000001,
+            0
+          ],
+          [
+            24,
+            62.61,
+            42.4
+          ]
+        ],
+        "dependencies": [
+          "pico.scad",
+          "parts.scad",
+          "import-base.stl"
+        ],
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ],
+        "echoes": [],
+        "triangles": 278,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        },
+        "export": {
+          "volume": 2625.1162837713064,
+          "bounds": [
+            [
+              -9.520000457763672,
+              -7.71999979019165,
+              0
+            ],
+            [
+              24,
+              62.61000061035156,
+              42.400001525878906
+            ]
+          ],
+          "triangles": 278,
+          "stlSha256": "999f26cfd54986b433f9fb60bfd5c3accd8758b6abbb1a74bf3eb890c14c07b4",
+          "bytes": 13984
+        }
+      },
+      "native": {
+        "operation": "echo-evaluation",
+        "status": "diagnostics",
+        "diagnostics": "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228",
+        "echoes": []
+      },
+      "preview": {
+        "status": "success",
+        "empty": false,
+        "volume": 2625.116202153438,
+        "bounds": [
+          [
+            -9.52,
+            -7.720000000000001,
+            0
+          ],
+          [
+            24,
+            62.61,
+            42.4
+          ]
+        ],
+        "dependencies": [
+          "pico.scad",
+          "parts.scad",
+          "import-base.stl"
+        ],
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ],
+        "echoes": [],
+        "triangles": 278,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        }
+      },
+      "nativeRenderEvaluation": {
+        "operation": "echo-evaluation",
+        "status": "diagnostics",
+        "diagnostics": "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228",
+        "echoes": []
+      },
+      "nativeRender": {
+        "status": "success",
+        "diagnostics": [
+          "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228"
+        ],
+        "volume": 2625.116283979809,
+        "bounds": [
+          [
+            -9.520000457763672,
+            -7.71999979019165,
+            0
+          ],
+          [
+            24,
+            62.61000061035156,
+            42.400001525878906
+          ]
+        ],
+        "triangles": 278,
+        "stlSha256": "66f7cf0b60d99ac3a05c523c198b95eb58fcbb732068042f5259c74e85453fb5",
+        "bytes": 13984
+      },
+      "comparison": {
+        "volumeAbsoluteDifference": 2.0850256987614557e-7,
+        "volumeRelativeDifference": 7.942603196230422e-11,
+        "maxBoundsDifference": 0,
+        "shapeEquivalence": "not-assessed"
+      },
+      "capture": {
+        "date": "2026-10-19",
+        "reason": "Replace CC BY-NC Pico case mesh with independently designed Apache-2.0 calibration fixture",
+        "projectRevision": "371ffc821b3732a26f6ead052b08c9d14d9ea910",
+        "implementationPatchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "implementationDirty": false,
+        "runtime": {
+          "node": "v22.23.3",
+          "platform": "linux",
+          "arch": "x64"
+        },
+        "oracleVersion": "OpenSCAD version 2026.10.02",
+        "oracleRevision": "7d44e5796cd489bcbfb8cef0720abe4db60ce35e",
+        "backend": "manifold-3d@3.5.4",
+        "nativeBackend": "Manifold",
+        "context": {
+          "modes": [
+            "preview",
+            "render"
+          ],
+          "time": 0,
+          "experimental": [],
+          "defines": {},
+          "sourceRoot": "references/scad sample files",
+          "assetPolicy": "authorized filesystem resolver; no synthesized assets"
+        },
+        "limits": {
+          "timeoutMs": 15000,
+          "maxSteps": 100000,
+          "maxTriangles": 1000000
+        }
+      }
+    },
+    {
+      "file": "references/scad sample files/prism_beakon.scad",
+      "sourceSha256": "dd2a5292c1413c825005e397f2626714a7e78bde528259ee95dcfc027faa7f60",
+      "inputs": [
+        {
+          "path": "prism_beakon.scad",
+          "kind": "source",
+          "bytes": 1177,
+          "sha256": "dd2a5292c1413c825005e397f2626714a7e78bde528259ee95dcfc027faa7f60"
+        }
+      ],
+      "dependencies": [
+        "prism_beakon.scad"
+      ],
+      "modules": [
+        "base_plug",
+        "cylinder",
+        "difference",
+        "mirror_cylinder",
+        "mirrored_cap",
+        "pole",
+        "prism_assembly",
+        "rotate",
+        "translate",
+        "union"
+      ],
+      "unsupportedModules": [],
+      "imports": [],
+      "javascript": {
+        "status": "evaluated",
+        "warnings": []
+      },
+      "render": {
+        "status": "success",
+        "empty": false,
+        "volume": 44621.444373065984,
+        "bounds": [
+          [
+            -23,
+            -23,
+            0
+          ],
+          [
+            23,
+            23,
+            106
+          ]
+        ],
+        "dependencies": [
+          "prism_beakon.scad"
+        ],
+        "diagnostics": [],
+        "echoes": [],
+        "triangles": 4656,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        },
+        "export": {
+          "volume": 44621.444407452174,
+          "bounds": [
+            [
+              -23,
+              -23,
+              0
+            ],
+            [
+              23,
+              23,
+              106
+            ]
+          ],
+          "triangles": 4656,
+          "stlSha256": "9e887e777bedd066a6de82cba6e235f71b7fda3a98d741ad059c5dcd71e2ed35",
+          "bytes": 232884
+        }
+      },
+      "native": {
+        "operation": "echo-evaluation",
+        "status": "success",
+        "diagnostics": "",
+        "echoes": []
+      },
+      "preview": {
+        "status": "success",
+        "empty": false,
+        "volume": 44621.444373065984,
+        "bounds": [
+          [
+            -23,
+            -23,
+            0
+          ],
+          [
+            23,
+            23,
+            106
+          ]
+        ],
+        "dependencies": [
+          "prism_beakon.scad"
+        ],
+        "diagnostics": [],
+        "echoes": [],
+        "triangles": 4656,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        }
+      },
+      "nativeRenderEvaluation": {
+        "operation": "echo-evaluation",
+        "status": "success",
+        "diagnostics": "",
+        "echoes": []
+      },
+      "nativeRender": {
+        "status": "success",
+        "diagnostics": [],
+        "volume": 44621.44440826646,
+        "bounds": [
+          [
+            -23,
+            -23,
+            0
+          ],
+          [
+            23,
+            23,
+            106
+          ]
+        ],
+        "triangles": 4336,
+        "stlSha256": "f3f3664e20db5b99dcc346d67b4eee28d45edfd7b7e0911b19326d4cc8b64a33",
+        "bytes": 216884
+      },
+      "comparison": {
+        "volumeAbsoluteDifference": 8.142887963913381e-7,
+        "volumeRelativeDifference": 1.8248822000044555e-11,
+        "maxBoundsDifference": 0,
+        "shapeEquivalence": "not-assessed"
+      }
+    },
+    {
+      "file": "references/scad sample files/quad chopter.scad",
+      "sourceSha256": "5b6d28e3578230321c336b64c35d5d1c187dd245e286cd4249fe48110c912eaf",
+      "inputs": [
+        {
+          "path": "quad chopter.scad",
+          "kind": "source",
+          "bytes": 19287,
+          "sha256": "5b6d28e3578230321c336b64c35d5d1c187dd245e286cd4249fe48110c912eaf"
+        }
+      ],
+      "javascript": {
+        "status": "blocked",
+        "code": "syntax-error",
+        "message": "Expected expression, found ','",
+        "location": {
+          "file": "quad chopter.scad",
+          "offset": 3497,
+          "line": 157,
+          "column": 17
+        }
+      },
+      "render": {
+        "status": "error",
+        "dependencies": [
+          "quad chopter.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "code": "syntax-error",
+            "message": "Expected expression, found ','",
+            "location": {
+              "file": "quad chopter.scad",
+              "offset": 3497,
+              "line": 157,
+              "column": 17
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "native": {
+        "status": "error",
+        "exitCode": 1,
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/quad chopter.scad, line 157\nCan't parse file '<repo>/references/scad sample files/quad chopter.scad'!"
+      },
+      "preview": {
+        "status": "error",
+        "dependencies": [
+          "quad chopter.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "code": "syntax-error",
+            "message": "Expected expression, found ','",
+            "location": {
+              "file": "quad chopter.scad",
+              "offset": 3497,
+              "line": 157,
+              "column": 17
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "nativeRenderEvaluation": {
+        "status": "error",
+        "exitCode": 1,
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/quad chopter.scad, line 157\nCan't parse file '<repo>/references/scad sample files/quad chopter.scad'!"
+      },
+      "nativeRender": {
+        "status": "error",
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/quad chopter.scad, line 157\nCan't parse file '<repo>/references/scad sample files/quad chopter.scad'!",
+        "exitCode": 1
+      }
+    },
+    {
+      "file": "references/scad sample files/rover.scad",
+      "sourceSha256": "018cd04588ee8cc97939a108567f3bd6fba92fdc2b4177c7d69d86251de5aa21",
+      "inputs": [
+        {
+          "path": "rover.scad",
+          "kind": "source",
+          "bytes": 22757,
+          "sha256": "018cd04588ee8cc97939a108567f3bd6fba92fdc2b4177c7d69d86251de5aa21"
+        }
+      ],
+      "javascript": {
+        "status": "blocked",
+        "code": "syntax-error",
+        "message": "Expected expression, found ','",
+        "location": {
+          "file": "rover.scad",
+          "offset": 3446,
+          "line": 158,
+          "column": 17
+        }
+      },
+      "render": {
+        "status": "error",
+        "dependencies": [
+          "rover.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "code": "syntax-error",
+            "message": "Expected expression, found ','",
+            "location": {
+              "file": "rover.scad",
+              "offset": 3446,
+              "line": 158,
+              "column": 17
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "native": {
+        "status": "error",
+        "exitCode": 1,
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/rover.scad, line 158\nCan't parse file '<repo>/references/scad sample files/rover.scad'!"
+      },
+      "preview": {
+        "status": "error",
+        "dependencies": [
+          "rover.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "code": "syntax-error",
+            "message": "Expected expression, found ','",
+            "location": {
+              "file": "rover.scad",
+              "offset": 3446,
+              "line": 158,
+              "column": 17
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "nativeRenderEvaluation": {
+        "status": "error",
+        "exitCode": 1,
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/rover.scad, line 158\nCan't parse file '<repo>/references/scad sample files/rover.scad'!"
+      },
+      "nativeRender": {
+        "status": "error",
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/rover.scad, line 158\nCan't parse file '<repo>/references/scad sample files/rover.scad'!",
+        "exitCode": 1
+      }
+    },
+    {
+      "file": "references/scad sample files/spider_bot.scad",
+      "sourceSha256": "5680bdbd3b8ce1e2fad2b99eb9f29e91dbcc674151b3622ac5a76b7e615f088f",
+      "inputs": [
+        {
+          "path": "spider_bot.scad",
+          "kind": "source",
+          "bytes": 2110,
+          "sha256": "5680bdbd3b8ce1e2fad2b99eb9f29e91dbcc674151b3622ac5a76b7e615f088f"
+        }
+      ],
+      "dependencies": [
+        "spider_bot.scad"
+      ],
+      "modules": [
+        "angle_bone",
+        "bearing",
+        "bearing_cap",
+        "cube",
+        "cylinder",
+        "difference",
+        "display",
+        "rotate",
+        "translate"
+      ],
+      "unsupportedModules": [],
+      "imports": [],
+      "javascript": {
+        "status": "evaluated",
+        "warnings": []
+      },
+      "render": {
+        "status": "success",
+        "empty": false,
+        "volume": 44006.74820483857,
+        "bounds": [
+          [
+            -140.5,
+            -6.5,
+            -125
+          ],
+          [
+            47,
+            6.5,
+            61
+          ]
+        ],
+        "dependencies": [
+          "spider_bot.scad"
+        ],
+        "diagnostics": [],
+        "echoes": [],
+        "triangles": 7096,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        },
+        "export": {
+          "volume": 44006.74889682915,
+          "bounds": [
+            [
+              -140.5,
+              -6.5,
+              -125
+            ],
+            [
+              47,
+              6.5,
+              61
+            ]
+          ],
+          "triangles": 7096,
+          "stlSha256": "62809a8ab7990875ca9fabf7bcff7e4d7703299ba25ab01f4801bce6265f86a0",
+          "bytes": 354884
+        }
+      },
+      "native": {
+        "operation": "echo-evaluation",
+        "status": "success",
+        "diagnostics": "",
+        "echoes": []
+      },
+      "preview": {
+        "status": "success",
+        "empty": false,
+        "volume": 44006.74820483857,
+        "bounds": [
+          [
+            -140.5,
+            -6.5,
+            -125
+          ],
+          [
+            47,
+            6.5,
+            61
+          ]
+        ],
+        "dependencies": [
+          "spider_bot.scad"
+        ],
+        "diagnostics": [],
+        "echoes": [],
+        "triangles": 7096,
+        "overlays": {
+          "background": 8,
+          "debug": 0
+        }
+      },
+      "nativeRenderEvaluation": {
+        "operation": "echo-evaluation",
+        "status": "success",
+        "diagnostics": "",
+        "echoes": []
+      },
+      "nativeRender": {
+        "status": "success",
+        "diagnostics": [],
+        "volume": 44006.74891280247,
+        "bounds": [
+          [
+            -140.5,
+            -6.5,
+            -125
+          ],
+          [
+            47,
+            6.5,
+            61
+          ]
+        ],
+        "triangles": 7088,
+        "stlSha256": "a00c6c01ac7f25fb0fa45b536bc243568ff9741c389b7e1a9d50e3b09c5585c3",
+        "bytes": 354484
+      },
+      "comparison": {
+        "volumeAbsoluteDifference": 0.00001597331720404327,
+        "volumeRelativeDifference": 3.6297426187273524e-10,
+        "maxBoundsDifference": 0,
+        "shapeEquivalence": "not-assessed"
+      }
+    },
+    {
+      "file": "references/scad sample files/spotter mount.scad",
+      "sourceSha256": "5b6d28e3578230321c336b64c35d5d1c187dd245e286cd4249fe48110c912eaf",
+      "inputs": [
+        {
+          "path": "spotter mount.scad",
+          "kind": "source",
+          "bytes": 19287,
+          "sha256": "5b6d28e3578230321c336b64c35d5d1c187dd245e286cd4249fe48110c912eaf"
+        }
+      ],
+      "javascript": {
+        "status": "blocked",
+        "code": "syntax-error",
+        "message": "Expected expression, found ','",
+        "location": {
+          "file": "spotter mount.scad",
+          "offset": 3497,
+          "line": 157,
+          "column": 17
+        }
+      },
+      "render": {
+        "status": "error",
+        "dependencies": [
+          "spotter mount.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "code": "syntax-error",
+            "message": "Expected expression, found ','",
+            "location": {
+              "file": "spotter mount.scad",
+              "offset": 3497,
+              "line": 157,
+              "column": 17
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "native": {
+        "status": "error",
+        "exitCode": 1,
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/spotter mount.scad, line 157\nCan't parse file '<repo>/references/scad sample files/spotter mount.scad'!"
+      },
+      "preview": {
+        "status": "error",
+        "dependencies": [
+          "spotter mount.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "code": "syntax-error",
+            "message": "Expected expression, found ','",
+            "location": {
+              "file": "spotter mount.scad",
+              "offset": 3497,
+              "line": 157,
+              "column": 17
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "nativeRenderEvaluation": {
+        "status": "error",
+        "exitCode": 1,
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/spotter mount.scad, line 157\nCan't parse file '<repo>/references/scad sample files/spotter mount.scad'!"
+      },
+      "nativeRender": {
+        "status": "error",
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/spotter mount.scad, line 157\nCan't parse file '<repo>/references/scad sample files/spotter mount.scad'!",
+        "exitCode": 1
+      }
+    },
+    {
+      "file": "references/scad sample files/tank_rover.scad",
+      "sourceSha256": "5bf1be972782da38e540853ae8c4b77bf7faab5755ba4e72b2887b8e7addd9d9",
+      "inputs": [
+        {
+          "path": "parts.scad",
+          "kind": "source",
+          "bytes": 22554,
+          "sha256": "4c3873f079edfc1b4efd3da1b186cd5d4a16bf8001b716396ed148a84a4b80bc"
+        },
+        {
+          "path": "tank_rover.scad",
+          "kind": "source",
+          "bytes": 380,
+          "sha256": "5bf1be972782da38e540853ae8c4b77bf7faab5755ba4e72b2887b8e7addd9d9"
+        }
+      ],
+      "dependencies": [
+        "tank_rover.scad",
+        "parts.scad"
+      ],
+      "modules": [
+        "cube",
+        "cylinder",
+        "dewalt_battery",
+        "difference",
+        "hdmi_micro_plug",
+        "hex",
+        "import",
+        "linear_extrude",
+        "polygon",
+        "pump",
+        "pump_mount",
+        "pump_nozzle",
+        "rotate",
+        "switch_mount",
+        "tooth",
+        "translate",
+        "u_out_pipe",
+        "union",
+        "usb_micro_plug"
+      ],
+      "unsupportedModules": [],
+      "imports": [
+        {
+          "file": "../stl/dewalt_battery_top.stl",
+          "source": "parts.scad",
+          "exists": false
+        }
+      ],
+      "javascript": {
+        "status": "evaluated",
+        "warnings": [
+          {
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ]
+      },
+      "render": {
+        "status": "success",
+        "empty": false,
+        "volume": 664.1999999999998,
+        "bounds": [
+          [
+            -13,
+            -1.5,
+            0
+          ],
+          [
+            13,
+            1.5,
+            18.4
+          ]
+        ],
+        "dependencies": [
+          "tank_rover.scad",
+          "parts.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ],
+        "echoes": [],
+        "triangles": 44,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        },
+        "export": {
+          "volume": 664.1999931335449,
+          "bounds": [
+            [
+              -13,
+              -1.5,
+              0
+            ],
+            [
+              13,
+              1.5,
+              18.399999618530273
+            ]
+          ],
+          "triangles": 44,
+          "stlSha256": "effb790ccf54b2418d46bce821a1b0ea0d2351884295b408edbab45aea3ce630",
+          "bytes": 2284
+        }
+      },
+      "native": {
+        "operation": "echo-evaluation",
+        "status": "diagnostics",
+        "diagnostics": "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228",
+        "echoes": []
+      },
+      "preview": {
+        "status": "success",
+        "empty": false,
+        "volume": 664.1999999999998,
+        "bounds": [
+          [
+            -13,
+            -1.5,
+            0
+          ],
+          [
+            13,
+            1.5,
+            18.4
+          ]
+        ],
+        "dependencies": [
+          "tank_rover.scad",
+          "parts.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "code": "deprecated-identifier",
+            "message": "Variable names starting with digits (\"180_camera\") will be removed in future releases.",
+            "location": {
+              "file": "parts.scad",
+              "offset": 5613,
+              "line": 228,
+              "column": 8
+            }
+          }
+        ],
+        "echoes": [],
+        "triangles": 44,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        }
+      },
+      "nativeRenderEvaluation": {
+        "operation": "echo-evaluation",
+        "status": "diagnostics",
+        "diagnostics": "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228",
+        "echoes": []
+      },
+      "nativeRender": {
+        "status": "success",
+        "diagnostics": [
+          "DEPRECATED: Variable names starting with digits (\"180_camera\") will be removed in future releases. in file references/scad sample files/parts.scad, line 228"
+        ],
+        "volume": 664.1999931335449,
+        "bounds": [
+          [
+            -13,
+            -1.5,
+            0
+          ],
+          [
+            13,
+            1.5,
+            18.399999618530273
+          ]
+        ],
+        "triangles": 44,
+        "stlSha256": "4d140485841195d65490887f5b8e298fcff1e9ad770f1e49294b6d45f2ba9fd8",
+        "bytes": 2284
+      },
+      "comparison": {
+        "volumeAbsoluteDifference": 0,
+        "volumeRelativeDifference": 0,
+        "maxBoundsDifference": 0,
+        "shapeEquivalence": "not-assessed"
+      }
+    },
+    {
+      "file": "references/scad sample files/zero two.scad",
+      "sourceSha256": "5b6d28e3578230321c336b64c35d5d1c187dd245e286cd4249fe48110c912eaf",
+      "inputs": [
+        {
+          "path": "zero two.scad",
+          "kind": "source",
+          "bytes": 19287,
+          "sha256": "5b6d28e3578230321c336b64c35d5d1c187dd245e286cd4249fe48110c912eaf"
+        }
+      ],
+      "javascript": {
+        "status": "blocked",
+        "code": "syntax-error",
+        "message": "Expected expression, found ','",
+        "location": {
+          "file": "zero two.scad",
+          "offset": 3497,
+          "line": 157,
+          "column": 17
+        }
+      },
+      "render": {
+        "status": "error",
+        "dependencies": [
+          "zero two.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "code": "syntax-error",
+            "message": "Expected expression, found ','",
+            "location": {
+              "file": "zero two.scad",
+              "offset": 3497,
+              "line": 157,
+              "column": 17
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "native": {
+        "status": "error",
+        "exitCode": 1,
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/zero two.scad, line 157\nCan't parse file '<repo>/references/scad sample files/zero two.scad'!"
+      },
+      "preview": {
+        "status": "error",
+        "dependencies": [
+          "zero two.scad"
+        ],
+        "diagnostics": [
+          {
+            "severity": "error",
+            "code": "syntax-error",
+            "message": "Expected expression, found ','",
+            "location": {
+              "file": "zero two.scad",
+              "offset": 3497,
+              "line": 157,
+              "column": 17
+            }
+          }
+        ],
+        "echoes": []
+      },
+      "nativeRenderEvaluation": {
+        "status": "error",
+        "exitCode": 1,
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/zero two.scad, line 157\nCan't parse file '<repo>/references/scad sample files/zero two.scad'!"
+      },
+      "nativeRender": {
+        "status": "error",
+        "diagnostics": "ERROR: Parser error: syntax error in file references/scad sample files/zero two.scad, line 157\nCan't parse file '<repo>/references/scad sample files/zero two.scad'!",
+        "exitCode": 1
+      }
+    }
+  ]
+}

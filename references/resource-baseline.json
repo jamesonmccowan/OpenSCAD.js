@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "runtime": {
+    "node": "v22.23.3",
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "AMD Ryzen 5 7640U w/ Radeon 760M Graphics",
+    "gcExposed": true
+  },
+  "backend": "manifold-3d@3.5.4",
+  "settings": {
+    "cycles": 30,
+    "warmupJobs": 3,
+    "maxPendingJobs": 2,
+    "timeoutMs": 5000,
+    "maxTriangles": 100000,
+    "busyMaxTriangles": 1000000,
+    "busyCancelFn": 800,
+    "busyAbortDelayMs": 75
+  },
+  "workloads": [
+    {
+      "name": "cube",
+      "source": "cube(3);"
+    },
+    {
+      "name": "sphere-csg",
+      "source": "$fn=64;difference(){sphere(12);translate([5,0,0])cube([10,10,40],center=true);}"
+    },
+    {
+      "name": "holed-extrusion",
+      "source": "$fn=96;linear_extrude(height=12,slices=16)difference(){circle(10);circle(4);}"
+    }
+  ],
+  "startupMs": 94.59406900000002,
+  "compile": {
+    "samples": 30,
+    "medianMs": 5.449683999999934,
+    "p95Ms": 10.689992999999959,
+    "maxMs": 10.757028999999989
+  },
+  "export": {
+    "samples": 30,
+    "medianMs": 16.140597999999954,
+    "p95Ms": 36.69919500000003,
+    "maxMs": 50.78600200000005
+  },
+  "phases": {
+    "resolve": {
+      "samples": 30,
+      "medianMs": 0.13623699999999417,
+      "p95Ms": 0.21478500000000622,
+      "maxMs": 0.21748999999999796
+    },
+    "evaluate": {
+      "samples": 30,
+      "medianMs": 0.09570100000007642,
+      "p95Ms": 0.18749300000001767,
+      "maxMs": 0.33447100000000773
+    },
+    "geometry": {
+      "samples": 30,
+      "medianMs": 4.318600999999944,
+      "p95Ms": 9.040593000000001,
+      "maxMs": 9.461987999999906
+    }
+  },
+  "memory": {
+    "scope": "process RSS includes workers; JS heap/external/arrayBuffers are main-thread only",
+    "peakRssObserved": 182337536,
+    "sampleIntervalMs": 10,
+    "before": {
+      "rss": 71081984,
+      "heapTotal": 13033472,
+      "heapUsed": 8662920,
+      "external": 2875051,
+      "arrayBuffers": 591326
+    },
+    "afterWarmup": {
+      "rss": 104841216,
+      "heapTotal": 13557760,
+      "heapUsed": 8112272,
+      "external": 3555680,
+      "arrayBuffers": 26863
+    },
+    "afterCycles": {
+      "rss": 117817344,
+      "heapTotal": 17752064,
+      "heapUsed": 8213384,
+      "external": 2755713,
+      "arrayBuffers": 26863
+    },
+    "afterDispose": {
+      "rss": 87572480,
+      "heapTotal": 18014208,
+      "heapUsed": 8400480,
+      "external": 2312205,
+      "arrayBuffers": 27103
+    },
+    "cycleRssDelta": 12976128,
+    "cycleHeapDelta": 101112
+  },
+  "lifecycle": {
+    "queueOverflowCode": "resource-limit",
+    "queuedCancellationMs": 0.09782399999994595,
+    "resolverCancellationMs": 0.1442419999999629,
+    "resolverAbortToWorkerExitMs": 4.572399999999902,
+    "restartMs": 90.73884099999998,
+    "busy": {
+      "status": "cancelled",
+      "jobMs": 75.50745699999993,
+      "abortToSettlementMs": 0.36983699999996134,
+      "abortToWorkerExitMs": 14.138964999999871
+    },
+    "disposalMs": 2.2394010000000435,
+    "workersSpawned": 3,
+    "workersExited": 3,
+    "pendingJobsSettled": 2,
+    "copiedMeshSurvived": true,
+    "extrusionBudgetCode": "resource-limit"
+  },
+  "caveats": "Observed process samples are not a WASM heap meter or proof of leak freedom. Busy work may complete before abort on faster hosts. Resolver promises are host-owned; they were released after cancellation/disposal. No universal memory or timing guarantees.",
+  "projectRevision": "1e5bd183a3db5a3d72d44a1ca2f8608c27c9101a",
+  "implementationPatchSha256": "84b57e844a91f1f8fc67febdd7826fbe5d01faadb4f3f7cdce4fac85418557bf",
+  "implementationDirty": true,
+  "measurementScriptSha256": "f7ee69836c23c5c99e0d4517e39b85d794473831435d626c809d5a3f0eae08c3"
+}

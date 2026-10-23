@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "oracleVersion": "OpenSCAD version 2026.10.02",
+  "oracleRevision": "7d44e5796cd489bcbfb8cef0720abe4db60ce35e",
+  "projectRevision": "9ce84696de039654eead2225975cd3c244be45df",
+  "implementationPatchSha256": "4c3ac99ab9e28ce8979efcfbddbe6251faaf2cab988bf45b5bf4de6ee9f6cdb2",
+  "implementationDirty": true,
+  "runtime": {
+    "node": "v18.19.1",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "backend": "manifold-3d@3.5.4",
+  "nativeBackend": "Manifold",
+  "capabilities": {
+    "profile": "openscad-2026.10.02",
+    "status": "partial",
+    "syntax": [
+      "assignments",
+      "modules",
+      "functions",
+      "anonymous-functions:closures",
+      "objects:experimental-object-function",
+      "parent_module",
+      "textmetrics:liberation-sans",
+      "fontmetrics:liberation-sans",
+      "built-in-functions:cross-lookup-search-chr-ord-rands-version_num",
+      "hexadecimal-integer-literals",
+      "if",
+      "for",
+      "let",
+      "ranges",
+      "vectors",
+      "indexing",
+      "ternary",
+      "modifiers",
+      "include:project",
+      "use:project",
+      "matrix-multiplication",
+      "defines:api",
+      "numeric-prefix-identifiers:deprecated",
+      "list-comprehensions:for-if-each-let",
+      "named-built-in-function-arguments"
+    ],
+    "geometry": [
+      "cube",
+      "sphere:orig",
+      "cylinder",
+      "square",
+      "circle",
+      "polygon",
+      "polyhedron",
+      "import:stl",
+      "text:liberation-sans-latin",
+      "roof:experimental-voronoi-straight",
+      "linear_extrude",
+      "rotate_extrude",
+      "projection",
+      "minkowski:3d",
+      "offset:2d",
+      "resize:2d-3d",
+      "fill:2d",
+      "union",
+      "difference",
+      "intersection",
+      "hull",
+      "translate",
+      "rotate",
+      "scale",
+      "mirror",
+      "multmatrix:3d"
+    ],
+    "unsupported": [
+      "minkowski:2d",
+      "object-methods",
+      "text:complex-shaping-or-other-fonts",
+      "surface",
+      "non-stl-imports",
+      "multmatrix:2d",
+      "linear_extrude:auto-slices",
+      "linear_extrude:v",
+      "linear_extrude:segments",
+      "callable-expressions",
+      "c-style-for",
+      "intersection_for",
+      "mixed-type-or-vector-ordering"
+    ]
+  },
+  "phase": "preview-render-and-native-stl-baseline",
+  "context": {
+    "modes": [
+      "preview",
+      "render"
+    ],
+    "time": 0,
+    "experimental": [
+      "roof"
+    ],
+    "defines": {},
+    "sourceRoot": "references/scad sample files",
+    "assetPolicy": "authorized filesystem resolver; no synthesized assets"
+  },
+  "limits": {
+    "timeoutMs": 15000,
+    "maxSteps": 100000,
+    "maxTriangles": 1000000
+  },
+  "warning": "Inventory includes inactive definitions; native preview is echo evaluation only. Bounds and volume do not establish shape equivalence or printability.",
+  "models": [
+    {
+      "file": "references/scad sample files/numbers_stencil.scad",
+      "sourceSha256": "145f8913bbdb7a1f5e5a742d3d4b9219456cdc53bd79b9f44500b606c931bc88",
+      "inputs": [
+        {
+          "path": "numbers_stencil.scad",
+          "kind": "source",
+          "bytes": 2878,
+          "sha256": "145f8913bbdb7a1f5e5a742d3d4b9219456cdc53bd79b9f44500b606c931bc88"
+        }
+      ],
+      "dependencies": [
+        "numbers_stencil.scad"
+      ],
+      "modules": [
+        "cube",
+        "cylinder",
+        "difference",
+        "intersection",
+        "mirror",
+        "numbers",
+        "numeral",
+        "roof",
+        "scale",
+        "scale_guide",
+        "screw_hole",
+        "text",
+        "translate",
+        "union"
+      ],
+      "unsupportedModules": [],
+      "imports": [],
+      "javascript": {
+        "status": "evaluated",
+        "warnings": []
+      },
+      "render": {
+        "status": "success",
+        "empty": false,
+        "volume": 35651.06509210635,
+        "bounds": [
+          [
+            -0.3423706054687017,
+            0,
+            0
+          ],
+          [
+            82.20000000000005,
+            114.3,
+            12.7
+          ]
+        ],
+        "dependencies": [
+          "numbers_stencil.scad"
+        ],
+        "diagnostics": [],
+        "echoes": [],
+        "triangles": 4718,
+        "overlays": {
+          "background": 0,
+          "debug": 0
+        },
+        "export": {
+          "volume": 35651.0645992089,
+          "bounds": [
+            [
+              -0.3423705995082855,
+              0,
+              0
+            ],
+            [
+              82.19999694824219,
+              114.30000305175781,
+              12.699999809265137
+            ]
+          ],
+          "triangles": 4718,
+          "stlSha256": "e165d1e91ff1be40bb4b9210fc8bacb20e8e3f96b2d18558cb8bcdf8d90da105",
+          "bytes": 235984
+        }
+      },
+      "native": {
+        "operation": "echo-evaluation",
+        "status": "success",
+        "diagnostics": "",
+        "echoes": []
+      },
+      "preview": {
+        "status": "success",
+        "empty": false,
+        "volume": 35651.06509210635,
+        "bounds": [
+          [
+            -0.3423706054687017,
+            0,
+            0
+          ],
+          [
+            82.20000000000005,
+            114.3,
+            12.7
+          ]
+        ],
+        "dependencies": [
+          "numbers_stencil.scad"
+        ],
+        "diagnostics": [],
+        "echoes": [],
+        "triangles": 4718,
+        "overlays": {
+          "background": 5,
+          "debug": 0
+        }
+      },
+      "nativeRenderEvaluation": {
+        "operation": "echo-evaluation",
+        "status": "success",
+        "diagnostics": "",
+        "echoes": []
+      },
+      "nativeRender": {
+        "status": "success",
+        "diagnostics": [],
+        "volume": 35643.17764456228,
+        "bounds": [
+          [
+            -0.3371768891811371,
+            0.06136000156402588,
+            0
+          ],
+          [
+            82.19999694824219,
+            114.30000305175781,
+            12.699999809265137
+          ]
+        ],
+        "triangles": 4668,
+        "stlSha256": "7ec55e7e6a3a7fb6e5b96d6a5e8c9cb6bfe7965c48e7091d982749c4787d69eb",
+        "bytes": 233484
+      },
+      "comparison": {
+        "volumeAbsoluteDifference": 7.886954646615777,
+        "volumeRelativeDifference": 0.00022127529496010045,
+        "maxBoundsDifference": 0.06136000156402588,
+        "shapeEquivalence": "not-assessed"
+      }
+    }
+  ]
+}
