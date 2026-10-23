@@ -135,7 +135,7 @@ test("measurement raycasts visible surfaces, reports deltas, copies JSON and cle
 	const copied = await page.evaluate(() => JSON.parse(globalThis.copiedMeasurement));
 	expect(copied).toMatchObject({ units: "mm", tolerance: 0.3, withinTolerance: false });
 	// Verify the actual pointer rays, including browser pixel rounding and layout changes.
-	expect(Math.abs(copied.distance - 6)).toBeLessThan(0.1);
+	expect(copied.distance).toBeCloseTo(Math.hypot(...second.map((value, axis) => value - first[axis])), 3);
 	copied.points.forEach((point, index) => point.forEach((value, axis) => expect(value).toBeCloseTo([first, second][index][axis], 3)));
 	["x", "y", "z"].forEach((axis, index) => expect(copied.delta[axis]).toBeCloseTo(copied.points[1][index] - copied.points[0][index], 3));
 	expect(copied.distance).toBeCloseTo(Math.hypot(copied.delta.x, copied.delta.y, copied.delta.z), 3);

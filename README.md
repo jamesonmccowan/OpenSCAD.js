@@ -123,11 +123,16 @@ reference overlays and standalone STEP/3MF viewing remain extension-only.
 git submodule update --init --recursive
 npm install
 npm run build
+npx playwright install
 npm run test:distribution
 npm pack ./dist --pack-destination /tmp
 ```
 
 After a regular `git clone`, initialize the pinned OpenSCAD reference submodule before building; cloning with `--recurse-submodules` does this automatically. The submodule supplies the Liberation font and license used in the artifact. The build produces an ignored `dist/` tree: serve that directory over HTTP for the studio, or pack/install it for the ESM API, viewer and CLI. Required JS dependencies are bundled or vendored locally, UI/geometry fonts and both WASM kernels are included, and relative worker/asset paths are preserved. The artifact has no npm runtime dependencies and does not contain the native reference source, tests, build tooling or the full development dependency tree. It remains a private distribution candidate; no publication is performed. Node 22 is recommended for installation and CLI use.
+
+On displayless Linux, run `xvfb-run -a npm run test:distribution` instead
+so Firefox can create the viewer's WebGL2 context. Playwright manages its
+HTTP server automatically; a manually started server is not required.
 
 The packaged public entries are:
 
@@ -273,9 +278,20 @@ The script builds locally at `references/openscad/build/openscad`, checks the pi
 ## Test
 
 ```sh
+git submodule update --init --recursive
 npm install
+npx playwright install chromium firefox webkit
+npm run setup:reference
 npm run test:all
 ```
+
+For a fresh checkout, install the native build dependencies described above
+before `setup:reference`. Initializing the submodule supplies source and fonts,
+but does not build `references/openscad/build/openscad`; without that executable,
+the native differential tests fail with `ENOENT`. Keep the submodule at the
+repository's pinned revision rather than adding the latest upstream revision.
+The build and setup scripts under `scripts/` are source files and must be
+included when copying or committing the repository.
 
 `test:all` runs the Node/native suites (including clean packed-consumer checks), all three browser projects (four workers total), and strict public TypeScript declaration checks in sequence, stopping at the first failure. `npm test` invokes browser tests directly; run `npm run build` first so distribution fixtures exist. Individual aggregate stages are `test:node`, `test:browser`, and `test:types`; npm's `test:browser` automatically builds the artifact. Node tests disable forced terminal colors so child-process output comparisons stay stable.
 

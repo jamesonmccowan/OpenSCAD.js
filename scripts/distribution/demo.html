@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenSCAD.js Preview and Core API Demo</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./openscad.js/runtime/assets/branding/icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./openscad.js/runtime/assets/branding/icon-16.png">
+  <style>
+    body { max-width: 48rem; margin: 2rem auto; padding: 0 1rem; font: 1rem/1.5 system-ui, sans-serif; }
+    textarea { box-sizing: border-box; width: 100%; min-height: 12rem; font: 1rem/1.5 monospace; }
+    button { padding: .6rem 1rem; margin-top: .5rem; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .models { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:1rem; }
+    .model { height:400px; }
+  </style>
+</head>
+<body>
+  <h1><img src="./openscad.js/runtime/assets/branding/icon-128.png" width="48" height="48" alt="" style="vertical-align: middle"> OpenSCAD.js Preview Windows</h1>
+  <p>Two independent, worker-backed models. Drag to orbit, scroll to zoom, and
+    use the overlay controls to preview, render, export STL, or inspect source.
+    Changes in the editable example are kept in memory only.</p>
+  <div class="models">
+    <section>
+      <h2>Read-only source</h2>
+      <div id="readonly-model" class="model"></div>
+    </section>
+    <section>
+      <h2>Editable project</h2>
+      <div id="editable-model" class="model"></div>
+    </section>
+  </div>
+  <pre id="preview-status" role="status"></pre>
+  <h2>Core API without a viewer</h2>
+  <p>This example compiles in a worker and downloads STL without a viewer, import
+    map, or runtime URL configuration. See <a href="./editor.html">the full editor</a>
+    for a full workspace.</p>
+  <label for="source">OpenSCAD source</label>
+  <textarea id="source" spellcheck="false">difference() {
+  cube([20, 20, 10], center=true);
+  cylinder(h=12, r=5, center=true, $fn=48);
+}</textarea>
+  <button id="export" type="button">Compile and download STL</button>
+  <pre id="status" role="status" aria-live="polite">Ready</pre>
+  <script type="module">
+    import { createWorkerEngine } from "./openscad.js/core.js";
+    import { createPreview } from "./openscad.js/preview.js";
+
+    const previews = [];
+    try {
+      previews.push(await createPreview(document.querySelector("#readonly-model"), {
+        source: 'color("gold") difference() { cube([20,20,10],center=true); cylinder(h=12,r=5,center=true,$fn=48); }',
+      }));
+      previews.push(await createPreview(document.querySelector("#editable-model"), {
+        editable: true,
+        project: {
+          entry: "models/main.scad",
+          files: {
+            "models/main.scad": 'use <shape.scad>\ncolor("steelblue") shape();',
+            "models/shape.scad": "module shape() { sphere(r=12,$fn=48); }",
+          },
+        },
+      }));
+    } catch (error) {
+      document.querySelector("#preview-status").textContent = `Preview setup failed: ${error.message}`;
+    }
+    window.addEventListener("pagehide", () => {
+      for (const preview of previews) void preview.dispose();
+    }, { once: true });
+
+    const button = document.querySelector("#export");
+    const source = document.querySelector("#source");
+    const status = document.querySelector("#status");
+    button.addEventListener("click", async () => {
+      button.disabled = true;
+      status.textContent = "Compiling...";
+      let engine, result, url;
+      try {
+        engine = await createWorkerEngine();
+        result = await engine.compile({
+          mode: "render",
+          files: { "main.scad": source.value },
+        });
+        const messages = result.diagnostics.map(diagnostic => {
+          const location = diagnostic.location;
+          const prefix = location ? `${location.file}:${location.line}:${location.column}: ` : "";
+          return `${prefix}${diagnostic.severity}: ${diagnostic.message}`;
+        });
+        messages.push(...result.echoes);
+        if (result.status !== "success") {
+          status.textContent = [result.status, ...messages].join("\n");
+          return;
+        }
+        const bytes = await engine.export(result);
+        url = URL.createObjectURL(new Blob([bytes], { type: "model/stl" }));
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "model.stl";
+        document.body.append(link);
+        link.click();
+        link.remove();
+        status.textContent = [
+          `Success: ${result.volume.toFixed(3)} mm^3; ${bytes.byteLength} STL bytes`,
+          ...messages,
+        ].join("\n");
+      } catch (error) {
+        status.textContent = `Error: ${error.message}`;
+      } finally {
+        result?.dispose?.();
+        try {
+          await engine?.dispose();
+        } finally {
+          // Allow the browser to consume the download before releasing its URL.
+          if (url) setTimeout(() => URL.revokeObjectURL(url), 1000);
+          button.disabled = false;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
