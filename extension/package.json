@@ -8,7 +8,7 @@
   "homepage": "https://github.com/jamesonmccowan/openscad.js/tree/main/extension#readme",
   "bugs": { "url": "https://github.com/jamesonmccowan/openscad.js/issues" },
   "keywords": ["openscad", "scad", "cad", "stl", "step", "3mf", "gcode"],
-  "publisher": "openscad-js-local",
+  "publisher": "OuroborosProductions",
   "icon": "media/icon.png",
   "license": "Apache-2.0",
   "engines": { "vscode": "^1.95.0" },

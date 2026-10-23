@@ -14,6 +14,8 @@ test('publication metadata agrees across packages and resolves monorepo document
     assert.equal(manifest.license, 'Apache-2.0');
   }
   assert.equal(extension.version, root.version);
+  assert.equal(extension.publisher, 'OuroborosProductions');
+  assert.equal(`${extension.publisher}.${extension.name}`, 'OuroborosProductions.openscad-js-preview');
   assert.equal(root.private, true, 'No npm registry publication is intended');
   assert.equal(extension.repository.directory, 'extension');
   assert.equal(extension.homepage, repository + '/tree/main/extension#readme');

@@ -6,10 +6,11 @@ The initial extension lives in `extension/` in the OpenSCAD.js repository.
 It may become a separate repository later. The first delivery is a local VSIX,
 not a Marketplace release. Repository metadata targets
 `https://github.com/jamesonmccowan/openscad.js` on `main`; public author is
-Jameson McCowan and initial version is `0.1.0`. The local publisher
-`openscad-js-local` remains provisional until a Marketplace publisher is
-registered. Changing it changes the extension ID and requires testing a new
-VSIX without the old-ID installation active. Normal packaging must rewrite
+Jameson McCowan and initial version is `0.1.0`. The registered Marketplace
+publisher is `OuroborosProductions`; the full extension ID is
+`OuroborosProductions.openscad-js-preview`. This replaces the former
+`openscad-js-local` publisher and requires testing a new VSIX without the old-ID
+installation active. Normal packaging must rewrite
 README links relative to the repository's `extension/` directory.
 
 ## Editor And Preview

@@ -11,7 +11,7 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const exec = promisify(execFile);
 const output = path.join(root, ".release-check");
 const report = { schemaVersion: 1, status: "running", startedAt: new Date().toISOString(), node: process.version, stages: [],
-	limitations: ["Marketplace publication requires a registered publisher ID; openscad-js-local is only a provisional local identity.",
+	limitations: ["The configured Marketplace publisher is OuroborosProductions; this gate does not authenticate publisher access or publish the extension.",
 		"Safari/iOS is unsupported. Does not publish, rewrite history, certify physical mobile devices/strict CSP, or replace Desktop/Remote SSH extension-host smoke tests."] };
 const save = () => writeFile(path.join(output, "report.json"), JSON.stringify(report, null, 2) + "\n");
 

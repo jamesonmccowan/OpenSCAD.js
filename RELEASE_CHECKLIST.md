@@ -35,8 +35,8 @@ private paths, source models or other personal data in public results.
 
 ## 1. Freeze and install the candidate
 
-- [ ] Choose the final publisher ID; do not describe `openscad-js-local` as a
-  registered Marketplace identity.
+- [ ] Confirm the candidate uses publisher ID `OuroborosProductions` and full
+  extension ID `OuroborosProductions.openscad-js-preview`.
 - [ ] Run `npm run release:check` from the intended release source. All stages
   must pass; preserve `.release-check/report.json`, logs and `SHA256SUMS`.
 - [ ] Record the hashes of the exact archives you will test and upload.

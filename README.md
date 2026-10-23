@@ -384,9 +384,9 @@ regenerate baselines, alter Git history or publish anything.
 
 The VSIX uses normal README-link rewriting for the planned
 `https://github.com/jamesonmccowan/openscad.js` repository and `main` branch.
-The publisher identity is still provisional until a Marketplace publisher is
-registered. A green local gate does not clear that publication blocker,
-replace installed Desktop/Remote SSH extension-host
+The registered Marketplace publisher is `OuroborosProductions`; the full
+extension ID is `OuroborosProductions.openscad-js-preview`. A green local gate
+does not publish the extension, replace installed Desktop/Remote SSH extension-host
 smoke tests, run hosted CI, inspect the eventual fresh-history publication,
 or certify physical mobile devices or arbitrary CSP/deployment environments.
 Safari/iOS is explicitly unsupported, not a pending release gate.

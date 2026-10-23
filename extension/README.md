@@ -316,7 +316,7 @@ not replace those real extension-host checks.
 Browser tests cover the actual packaged rendering code with a simulated VS
 Code message bridge, not VS Code's complete webview resource transport.
 
-The publisher ID is provisional for local packaging only. Automatic compilation,
+The publisher ID is `OuroborosProductions`. Automatic compilation,
 Customizer and animation are implemented; native backend selection,
 language-server features and session restoration remain deferred.
 See SPECIFICATION.md in the source tree.
@@ -326,21 +326,21 @@ See SPECIFICATION.md in the source tree.
 - Public author: Jameson McCowan.
 - Planned repository: https://github.com/jamesonmccowan/openscad.js, branch `main`.
 - Initial version: `0.1.0`; package name: `openscad-js-preview`.
-- `openscad-js-local` is an existing local-test publisher ID, **not a registered
-  Marketplace identity**. No Marketplace ownership or availability is claimed.
+- Registered Marketplace publisher ID: `OuroborosProductions`.
+- Full extension ID: `OuroborosProductions.openscad-js-preview`.
 
-Before Marketplace publication, create a publisher using the
-[official publishing instructions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#create-a-publisher),
-then replace `publisher` in package.json with its exact registered ID.
+The `publisher` in package.json matches the registered publisher ID.
+See the [official publishing instructions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
+for packaging and publication.
 The public publisher display name and the unique publisher ID are different.
 Do not put publishing credentials in this repository or send them in chat.
 No login, account creation, upload or publication is performed by the build/gate.
 
 Changing the publisher changes the extension ID (`publisher.name`).
-The existing local extension will not automatically become an installation of
-the new ID; uninstall the local-ID copy when testing the final-ID VSIX to avoid
-duplicate commands/viewers. Rebuild and rerun the release gate after choosing
-the final publisher, then smoke-test that exact VSIX.
+The former `openscad-js-local.openscad-js-preview` installation will not
+automatically become an installation of the new ID; uninstall the local-ID copy
+when testing the new VSIX to avoid duplicate commands/viewers. Rebuild and rerun
+the release gate with `OuroborosProductions`, then smoke-test that exact VSIX.
 
 README content links explicitly target `blob/main/extension/`, with image links
 targeting `raw/main/extension/`, because this extension lives in a monorepo.
