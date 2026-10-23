@@ -65,9 +65,14 @@ jobs:
           node-version: '22'
       - name: Install JavaScript Dependencies
         run: npm ci --no-audit --no-fund
+      - name: Use Main Ubuntu Archive For WebKit Dependencies
+        if: matrix.browser == 'webkit'
+        run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
       - name: Install Browser And Host Dependencies
+        timeout-minutes: 8
         run: npx playwright install --with-deps ${{ matrix.browser }}
       - name: Run Shared Browser Fixtures
+        timeout-minutes: 10
         run: xvfb-run -a npm run test:browser -- --project=${{ matrix.browser }} --workers=2
       - name: Upload Browser Results And Failure Traces
         if: ${{ always() }}
