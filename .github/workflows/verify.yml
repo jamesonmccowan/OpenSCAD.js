@@ -21,10 +21,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
       - name: Install JavaScript Dependencies
@@ -35,7 +35,7 @@ jobs:
         run: |
           sudo -n apt-get update
           sudo -n apt-get install -y --no-install-recommends \
-            build-essential cmake ninja-build pkg-config bison flex \
+            build-essential cmake ninja-build pkg-config bison flex gettext \
             libcgal-dev libgmp-dev libmpfr-dev libeigen3-dev \
             libboost-regex-dev libboost-program-options-dev \
             libharfbuzz-dev libfontconfig1-dev libfreetype6-dev libglib2.0-dev \
@@ -57,21 +57,25 @@ jobs:
       matrix:
         browser: [chromium, firefox, webkit]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: true
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
       - name: Install JavaScript Dependencies
         run: npm ci --no-audit --no-fund
+      - name: Use Main Ubuntu Archive For Browser Dependencies
+        run: sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
       - name: Install Browser And Host Dependencies
+        timeout-minutes: 8
         run: npx playwright install --with-deps ${{ matrix.browser }}
       - name: Run Shared Browser Fixtures
+        timeout-minutes: 10
         run: xvfb-run -a npm run test:browser -- --project=${{ matrix.browser }} --workers=2
       - name: Upload Browser Results And Failure Traces
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: browser-results-${{ matrix.browser }}
           path: |
@@ -87,10 +91,10 @@ jobs:
     env:
       OPENSCAD_RELEASE_CHECK: '1'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: true
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
       - name: Install Root And Extension Dependencies
@@ -115,7 +119,7 @@ jobs:
           cd .release-check
           sha256sum extension.vsix > SHA256SUMS
       - name: Upload Verified CI Candidate
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: extension-ci-candidate
           path: |
@@ -125,7 +129,7 @@ jobs:
           retention-days: 7
       - name: Upload Extension Failure Traces
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: extension-browser-results
           path: |

@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
     const bridge = { source: 'include <part.scad>\ncube(5);', files: { 'project/part.scad': 'translate([8,0,0]) sphere(2);' }, fonts: [
       { name: 'Liberation Sans:style=Regular', family: 'Liberation Sans', style: 'Regular', source: 'bundled' },
       { name: 'DejaVu Sans:style=Bold Oblique', family: 'DejaVu Sans', style: 'Bold Oblique', source: 'system' },
-    ], experimental: [], revision: 0, job: 0, sent: [], compiles: [], exports: [], measurements: [], copiedMeasurements: [], changeDuringCompile: false };
+    ], experimental: [], revision: 0, job: 0, sent: [], compiles: [], exports: [], measurements: [], copiedMeasurements: [], changeDuringCompile: false, heldReads: [], holdReadPath: undefined };
     const send = message => window.postMessage(message, '*');
     bridge.edit = source => { bridge.source = source; bridge.revision++; send({ type: 'stale', revision: bridge.revision }); };
     window.__bridge = bridge;
@@ -23,7 +23,11 @@ test.beforeEach(async ({ page }) => {
         send({ ...message, type: 'compile', job: ++bridge.job, revision: bridge.revision, requestRevision: message.revision, source: bridge.source, entry: 'project/main.scad', files: { 'project/main.scad': bridge.source }, libraryPaths: [], experimental: bridge.experimental });
         if (bridge.changeDuringCompile) bridge.edit('cube(11);');
       }
-      if (message.type === 'read') send({ type: 'readResult', job: message.job, id: message.id, value: bridge.files[message.path] });
+      if (message.type === 'read') {
+        const reply = { type: 'readResult', job: message.job, id: message.id, value: bridge.files[message.path] };
+        if (message.path === bridge.holdReadPath) bridge.heldReads.push(reply);
+        else send(reply);
+      }
       if (message.type === 'fontList') send({ type: 'fontListResult', requestId: message.requestId, fonts: bridge.fonts, error: bridge.fontError, host: "Remote extension host (ssh-remote, linux). These are not your client PC's fonts." });
       if (message.type === 'fontCopy') { bridge.fontCopy = message.name; send({ type: 'fontCopied', name: message.name }); }
       if (message.type === 'export') bridge.exports.push(message);
@@ -413,18 +417,32 @@ test('current-source STL export loads packaged fonts and refuses a stale snapsho
 });
 
 test('cancellation and supersession allow the next compilation to succeed', async ({ page }) => {
-  await page.evaluate(() => window.__bridge.edit('for (i=[0:20000]) translate([i,0,0]) cube(1);'));
+  await page.evaluate(() => {
+    window.__bridge.holdReadPath = 'project/blocked.scad';
+    window.__bridge.files['project/blocked.scad'] = 'cube(100);';
+    window.__bridge.edit('include <blocked.scad> cube(1);');
+  });
   await page.locator('#preview').click();
+  await expect.poll(() => page.evaluate(() => window.__bridge.heldReads.length)).toBe(1);
+  await expect(page.locator('#status')).toHaveAttribute('data-state', 'busy');
   await page.locator('#cancel').click();
   await expect(page.locator('#status')).toHaveText('Out of Date');
+  expect(await page.evaluate(() => window.__bridge.sent.some(message => message.type === 'cancel'))).toBe(true);
   await page.evaluate(() => window.__bridge.edit('cube(3);'));
   await compile(page);
   expect((await stats(page)).volume).toBeCloseTo(27);
-  await page.evaluate(() => window.__bridge.edit('for (i=[0:20000]) translate([i,0,0]) cube(1);'));
+  await page.evaluate(() => window.__bridge.edit('include <blocked.scad> cube(1);'));
   await page.locator('#preview').click();
+  await expect.poll(() => page.evaluate(() => window.__bridge.heldReads.length)).toBe(2);
+  await expect(page.locator('#status')).toHaveAttribute('data-state', 'busy');
   await page.evaluate(() => window.__bridge.edit('cube(4);'));
   await compile(page, 'render');
+  await page.evaluate(() => {
+    for (const reply of window.__bridge.heldReads.splice(0)) window.postMessage(reply, '*');
+  });
+  await expect(page.locator('#status')).toHaveAttribute('data-state', 'ready');
   expect((await stats(page)).volume).toBeCloseTo(64);
+  await expect(page.locator('#messages')).toBeHidden();
 });
 
 test('Customizer overrides update geometry and presets preserve selected values', async ({ page }) => {
@@ -788,7 +806,8 @@ test('audit rejects invalid clearance before compiling', async ({ page }) => {
 });
 
 test('robot hand exercise validates Customizer, animation, telemetry, slicing and snapshot together', async ({ page }, testInfo) => {
-  test.setTimeout(60_000);
+  // Three compilations each allow 30 seconds; leave time for the viewer interactions too.
+  test.setTimeout(120_000);
   const source = await readFile(new URL('../../references/scad sample files/hand.scad', import.meta.url), 'utf8');
   await page.evaluate(text => window.__bridge.edit(text), source);
   await page.locator('#preview').click();
@@ -843,7 +862,6 @@ test('robot hand exercise validates Customizer, animation, telemetry, slicing an
     return { planes, localClippingEnabled: viewer.renderer.localClippingEnabled, bounds: [viewer.bounds.min.toArray(), viewer.bounds.max.toArray()] };
   });
   expect(clippingState.planes.length).toBeGreaterThan(0);
-  await page.screenshot({ path: testInfo.outputPath('robot-hand-slice-enabled.png'), fullPage: true });
   const changedPixels = await page.evaluate(async () => {
     const { viewer } = await import('/extension/media/main.js');
     viewer.renderer.render(viewer.scene, viewer.camera);
@@ -876,12 +894,13 @@ test('robot hand exercise validates Customizer, animation, telemetry, slicing an
           const material = materials[intersection.face?.materialIndex ?? 0] ?? materials[0];
           return !material?.clippingPlanes?.some(plane => plane.distanceToPoint(intersection.point) < -1e-5);
         });
-        if (hit) candidates.push({ x: rect.left + (x + 1) * rect.width / 2, y: rect.top + (1 - y) * rect.height / 2, point: hit.point.toArray() });
+        if (hit) {
+          const candidate = { x: rect.left + (x + 1) * rect.width / 2, y: rect.top + (1 - y) * rect.height / 2, point: hit.point.toArray() };
+          const first = candidates.find(first => Math.hypot(...candidate.point.map((value, axis) => value - first.point[axis])) > 3);
+          if (first) return [first, candidate];
+          candidates.push(candidate);
+        }
       }
-    }
-    for (const first of candidates) {
-      const second = candidates.find(candidate => Math.hypot(...candidate.point.map((value, axis) => value - first.point[axis])) > 3);
-      if (second) return [first, second];
     }
     return [];
   });

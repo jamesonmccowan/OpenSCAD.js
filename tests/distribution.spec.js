@@ -471,7 +471,7 @@ test("preview resolver sources become editable, and cancelled geometry export le
 			workerOptions: {
 				onProgress: event => {
 					if (event.phase === "started" && window.cancelHeavy) {
-						setTimeout(() => window.previews[0].stop(), 30);
+						window.heavyStarted = true;
 					}
 				},
 			},
@@ -489,13 +489,19 @@ test("preview resolver sources become editable, and cancelled geometry export le
 	page.on("download", () => downloads++);
 	const result = await page.evaluate(async () => {
 		window.cancelHeavy = true;
+		window.heavyStarted = false;
 		let ticks = 0;
-		const timer = setInterval(() => ticks++, 5);
+		const timer = setInterval(() => {
+			if (window.heavyStarted && ++ticks === 2) {
+				clearInterval(timer);
+				window.previews[0].stop();
+			}
+		}, 5);
 		try { return { outcome: await window.previews[0].downloadStl(), ticks }; }
 		finally { clearInterval(timer); window.cancelHeavy = false; }
 	});
 	expect(result.outcome.status).toBe("cancelled");
-	expect(result.ticks).toBeGreaterThan(1);
+	expect(result.ticks).toBe(2);
 	expect(downloads).toBe(0);
 	expect(await page.evaluate(() => window.previews[0].state.volume)).toBe(64);
 	await page.locator("#a textarea").fill("module shape() { cube(2); }");
