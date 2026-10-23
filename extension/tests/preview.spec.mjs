@@ -806,7 +806,8 @@ test('audit rejects invalid clearance before compiling', async ({ page }) => {
 });
 
 test('robot hand exercise validates Customizer, animation, telemetry, slicing and snapshot together', async ({ page }, testInfo) => {
-  test.setTimeout(60_000);
+  // Three compilations each allow 30 seconds; leave time for the viewer interactions too.
+  test.setTimeout(120_000);
   const source = await readFile(new URL('../../references/scad sample files/hand.scad', import.meta.url), 'utf8');
   await page.evaluate(text => window.__bridge.edit(text), source);
   await page.locator('#preview').click();
@@ -861,7 +862,6 @@ test('robot hand exercise validates Customizer, animation, telemetry, slicing an
     return { planes, localClippingEnabled: viewer.renderer.localClippingEnabled, bounds: [viewer.bounds.min.toArray(), viewer.bounds.max.toArray()] };
   });
   expect(clippingState.planes.length).toBeGreaterThan(0);
-  await page.screenshot({ path: testInfo.outputPath('robot-hand-slice-enabled.png'), fullPage: true });
   const changedPixels = await page.evaluate(async () => {
     const { viewer } = await import('/extension/media/main.js');
     viewer.renderer.render(viewer.scene, viewer.camera);
