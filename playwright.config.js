@@ -6,7 +6,16 @@ export default defineConfig({
 	fullyParallel: true,
 	projects: [
 		{ name: "chromium", use: { browserName: "chromium" } },
-		{ name: "firefox", use: { browserName: "firefox" } },
+		{
+			name: "firefox",
+			use: {
+				browserName: "firefox",
+				launchOptions: {
+					// Xvfb/Mesa can provide WebGL2 even when Firefox's graphics blocklist rejects it.
+					firefoxUserPrefs: { "webgl.force-enabled": true },
+				},
+			},
+		},
 		{ name: "webkit", use: { browserName: "webkit" } },
 	],
 	reporter: process.env.CI ? [["list"], ["html", { open: "never" }]] : "list",

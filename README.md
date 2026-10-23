@@ -317,6 +317,13 @@ In a displayless Linux session, Firefox may fail to create the WebGL2 context re
 xvfb-run -a npm run test:all
 ```
 
+The Playwright Firefox project sets `webgl.force-enabled` to bypass graphics
+blocklisting that can reject Xvfb/Mesa's WebGL2 context on CI runners. This
+test-only preference does not supply a graphics backend or remove the Xvfb
+requirement; rendering tests still create real WebGL2 contexts and check pixels.
+Distribution startup assertions include browser errors and rejected/failed
+asset requests so initialization failures are visible alongside the status.
+
 The native reference must be built with `-DEXPERIMENTAL=ON`, as configured by the reference build script; otherwise roof and object conformance checks fail because native OpenSCAD rejects `--enable`.
 
 Run a single engine with `npm run test:browser -- --project=firefox` (or `chromium`/`webkit`). [CI](.github/workflows/verify.yml) runs Node/native/types and a three-engine browser matrix separately, provisioning the pinned reference checkout explicitly. A separate extension job builds both packages, runs extension unit/payload/Chromium checks, packages and inspects a VSIX, and uploads its verified CI candidate/checksum plus available failure traces. It does not publish or certify a manual host smoke pass. The [headless oracle build script](scripts/build-reference.sh) requires native build dependencies; `REFERENCE_BUILD_DIR` can select a separate build directory. See [browser parity and CI notes](references/LANGUAGE_CONFORMANCE.md#cross-browser-parity-and-ci) for scope and caveats.

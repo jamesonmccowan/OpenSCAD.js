@@ -20,7 +20,10 @@ for (const [name, viewport] of [["desktop", { width: 1280, height: 800 }], ["mob
 		await page.setViewportSize(viewport);
 		const requests = await distributionOnly(page);
 		await page.goto(name === "desktop" ? "/dist/editor.html" : "/dist/");
-		await expect(page.locator("#status")).toHaveText("READY", { timeout: 20_000 });
+		await expect.poll(async () => ({
+			status: await page.locator("#status").textContent(),
+			...requests,
+		}), { timeout: 20_000 }).toEqual({ status: "READY", rejected: [], failed: [], errors: [] });
 		await expect(page.locator(".brand-mark")).toHaveJSProperty("naturalWidth", 128);
 		expect(await page.locator('link[rel="icon"][sizes="32x32"]').getAttribute("href")).toBe("./openscad.js/runtime/assets/branding/icon-32.png");
 		await page.locator("#editor").fill('linear_extrude(2) text("OpenSCAD",size=4,font="Liberation Serif:style=Italic");');
