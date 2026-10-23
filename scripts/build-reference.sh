@@ -41,7 +41,7 @@ if "$install_deps"; then
     fi
     "${elevate[@]}" apt-get update
     "${elevate[@]}" env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        build-essential cmake ninja-build pkg-config bison flex \
+        build-essential cmake ninja-build pkg-config bison flex gettext \
         libcgal-dev libgmp-dev libmpfr-dev libeigen3-dev \
         libboost-regex-dev libboost-program-options-dev \
         libharfbuzz-dev libfontconfig1-dev libfreetype6-dev libglib2.0-dev \
@@ -49,7 +49,7 @@ if "$install_deps"; then
         libtbb-dev fonts-liberation python3
 fi
 
-for tool in git cmake ninja c++ pkg-config bison flex; do
+for tool in git cmake ninja c++ pkg-config bison flex msgfmt; do
     if ! command -v "$tool" >/dev/null; then
         printf 'Missing build tool: %s. Install build dependencies or use --install-deps on Debian/Ubuntu.\n' "$tool" >&2
         exit 1

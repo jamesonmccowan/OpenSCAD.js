@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
-import { copyFile, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { test } from "node:test";
@@ -32,7 +32,7 @@ if (tool === "sudo") {
   process.exit(result.status ?? 1);
 }
 `;
-		for (const tool of ["git", "cmake", "ninja", "c++", "pkg-config", "bison", "flex", "apt-get", "sudo"]) {
+		for (const tool of ["git", "cmake", "ninja", "c++", "pkg-config", "bison", "flex", "msgfmt", "apt-get", "sudo"]) {
 			await writeFile(path.join(tools, tool), mock, { mode: 0o755 });
 		}
 		await writeFile(path.join(build, "openscad"), mock, { mode: 0o755 });
@@ -73,6 +73,20 @@ test("reference setup initializes submodules and sanitizes native build environm
 	});
 });
 
+test("reference setup reports missing msgfmt before initializing or building", async () => {
+	await setupFixture(async ({ directory, invoke, calls }) => {
+		const tools = path.join(directory, "tools");
+		await symlink("/usr/bin/dirname", path.join(tools, "dirname"));
+		await rm(path.join(tools, "msgfmt"));
+		await assert.rejects(invoke([], { PATH: tools }), error => {
+			assert.equal(error.code, 1);
+			assert.match(error.stderr, /Missing build tool: msgfmt/);
+			return true;
+		});
+		assert.deepEqual(await calls(), []);
+	});
+});
+
 test("reference setup preserves existing build generators and files", async () => {
 	await setupFixture(async ({ invoke, calls, build }) => {
 		await writeFile(path.join(build, "CMakeCache.txt"), "CMAKE_GENERATOR:INTERNAL=Unix Makefiles\n");
@@ -108,5 +122,6 @@ test("reference setup installs build packages only when explicitly requested", a
 		assert.deepEqual(installs[0].args, ["update"]);
 		assert.ok(installs[1].args.includes("libgmp-dev"));
 		assert.ok(installs[1].args.includes("ninja-build"));
+		assert.ok(installs[1].args.includes("gettext"));
 	});
 });

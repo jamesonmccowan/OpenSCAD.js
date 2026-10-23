@@ -271,7 +271,7 @@ Package installation uses `apt-get` and requires root or passwordless `sudo`. To
 npm run setup:reference
 ```
 
-The script builds locally at `references/openscad/build/openscad`, checks the pinned version and experimental CLI support, and does not install OpenSCAD globally. It clears the old dependency-library environment and cached GMP selections that can cause `libhogweed` symbol errors. Existing build generators are retained; new builds use Ninja. A checkout at a different revision or with tracked source changes is rejected rather than overwritten. Other platforms require equivalent build dependencies and Bash.
+The script builds locally at `references/openscad/build/openscad`, checks the pinned version and experimental CLI support, and does not install OpenSCAD globally. Native build dependencies include GNU gettext (`msgfmt`), used to compile translations even for the headless build. It clears the old dependency-library environment and cached GMP selections that can cause `libhogweed` symbol errors. Existing build generators are retained; new builds use Ninja. A checkout at a different revision or with tracked source changes is rejected rather than overwritten. Other platforms require equivalent build dependencies and Bash.
 
 `REFERENCE_BUILD_JOBS=1` reduces build memory use (default: 2, maximum: 4). `REFERENCE_BUILD_DIR` selects another build directory, but the current native tests expect the default binary path. Setup does not install npm dependencies or Playwright browsers; follow the test prerequisites below. Compilation may take substantial time and memory.
 
