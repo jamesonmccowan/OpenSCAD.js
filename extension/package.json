@@ -1,0 +1,63 @@
+{
+  "name": "openscad-js-preview",
+  "displayName": "OpenSCAD.js Preview",
+  "description": "SCAD syntax highlighting and interactive 3D previews with STL export, Customizer, animation, and STL, STEP, 3MF and G-code viewers.",
+  "version": "0.1.0",
+  "author": "Jameson McCowan",
+  "repository": { "type": "git", "url": "https://github.com/jamesonmccowan/openscad.js.git", "directory": "extension" },
+  "homepage": "https://github.com/jamesonmccowan/openscad.js/tree/main/extension#readme",
+  "bugs": { "url": "https://github.com/jamesonmccowan/openscad.js/issues" },
+  "keywords": ["openscad", "scad", "cad", "stl", "step", "3mf", "gcode"],
+  "publisher": "openscad-js-local",
+  "icon": "media/icon.png",
+  "license": "Apache-2.0",
+  "engines": { "vscode": "^1.95.0" },
+  "categories": ["Programming Languages", "Visualization"],
+  "main": "./src/extension.cjs",
+  "extensionKind": ["workspace"],
+  "capabilities": { "untrustedWorkspaces": { "supported": false, "description": "Preview reads project dependencies and executes resource-intensive geometry compilation." }, "virtualWorkspaces": false },
+  "contributes": {
+    "languages": [{ "id": "scad", "aliases": ["OpenSCAD", "scad"], "extensions": [".scad"], "configuration": "./language-configuration.json" }],
+    "grammars": [{ "language": "scad", "scopeName": "source.scad", "path": "./syntaxes/scad.tmLanguage.json" }],
+    "customEditors": [{ "viewType": "openscadJs.stlViewer", "displayName": "OpenSCAD.js Model Viewer", "selector": [{ "filenamePattern": "*.stl" }, { "filenamePattern": "*.STL" }, { "filenamePattern": "*.step" }, { "filenamePattern": "*.STEP" }, { "filenamePattern": "*.stp" }, { "filenamePattern": "*.STP" }, { "filenamePattern": "*.3mf" }, { "filenamePattern": "*.3MF" }], "priority": "default" }, { "viewType": "openscadJs.gcodeViewer", "displayName": "OpenSCAD.js G-code Viewer", "selector": [{ "filenamePattern": "*.gcode" }, { "filenamePattern": "*.GCODE" }, { "filenamePattern": "*.gco" }, { "filenamePattern": "*.GCO" }], "priority": "default" }],
+    "commands": [
+      { "command": "openscadJs.openPreview", "title": "OpenSCAD: Open Preview to the Side", "icon": "$(open-preview)" },
+      { "command": "openscadJs.useAsReference", "title": "OpenSCAD: Use Model as Reference in SCAD Preview", "icon": "$(upload)" },
+      { "command": "openscadJs.preview", "title": "OpenSCAD: Preview (Compile)", "icon": "$(eye)" },
+      { "command": "openscadJs.render", "title": "OpenSCAD: Render (Full)", "icon": "$(box)" },
+      { "command": "openscadJs.captureSnapshot", "title": "OpenSCAD: Capture Viewport Snapshot to Workspace", "icon": "$(camera)" },
+      { "command": "openscadJs.copyMeasurement", "title": "OpenSCAD: Copy Last 3D Measurement", "icon": "$(copy)" },
+      { "command": "openscadJs.inspectGeometry", "title": "OpenSCAD: Inspect Model Geometry (Dimensions & Volume)", "icon": "$(info)" }
+    ],
+    "keybindings": [
+      { "command": "openscadJs.preview", "key": "f5", "when": "editorLangId == scad" },
+      { "command": "openscadJs.preview", "key": "ctrl+enter", "mac": "cmd+enter", "when": "editorLangId == scad" },
+      { "command": "openscadJs.render", "key": "f6", "when": "editorLangId == scad" }
+    ],
+    "menus": {
+      "explorer/context": [{ "command": "openscadJs.useAsReference", "when": "resourceExtname =~ /\\.(stl|step|stp|3mf)$/i", "group": "navigation" }],
+      "editor/title": [{ "command": "openscadJs.openPreview", "when": "editorLangId == scad", "group": "navigation" }],
+      "editor/context": [
+        { "command": "openscadJs.openPreview", "when": "editorLangId == scad" },
+        { "command": "openscadJs.preview", "when": "editorLangId == scad" },
+        { "command": "openscadJs.render", "when": "editorLangId == scad" },
+        { "command": "openscadJs.captureSnapshot", "when": "editorLangId == scad" },
+        { "command": "openscadJs.copyMeasurement", "when": "editorLangId == scad" },
+        { "command": "openscadJs.inspectGeometry", "when": "editorLangId == scad" }
+      ]
+    },
+    "configuration": {
+      "title": "OpenSCAD.js",
+      "properties": {
+        "openscadJs.libraryPaths": { "type": "array", "items": { "type": "string" }, "default": [], "scope": "resource", "description": "Library directories on the workspace host, absolute or relative to the entry workspace folder." },
+        "openscadJs.fontDirectories": { "type": "array", "items": { "type": "string" }, "default": [], "scope": "machine", "description": "Additional font directories on the extension/workspace host (.ttf/.otf, recursive), absolute or relative to the workspace folder. Matched by embedded family and style names." },
+        "openscadJs.systemFonts": { "type": "boolean", "default": true, "scope": "machine", "description": "Resolve installed fonts on the extension/workspace host. With SSH, WSL or containers, this is not necessarily the PC displaying VS Code. Linux uses fontconfig when available." },
+        "openscadJs.experimentalFeatures": { "type": "array", "items": { "type": "string", "enum": ["roof", "object-function", "import-function", "vector-swizzle"] }, "uniqueItems": true, "default": [], "scope": "resource", "description": "Enable supported experimental OpenSCAD.js features: roof, object-function, import-function, and vector-swizzle." },
+        "openscadJs.autoPreview": { "type": "string", "enum": ["off", "onSave", "onEdit"], "default": "off", "scope": "resource", "description": "Automatically compile preview when files change: 'off' (manual only), 'onSave' (when file is saved), or 'onEdit' (debounced while editing)." },
+        "openscadJs.autoPreviewDelay": { "type": "number", "default": 400, "minimum": 100, "maximum": 5000, "scope": "resource", "description": "Debounce delay in milliseconds before automatically compiling preview when autoPreview is set to 'onEdit'." }
+      }
+    }
+  },
+  "scripts": { "build": "node scripts/build.mjs", "test": "node --test tests/*.test.cjs", "test:occt": "node --test tests/occt-package.test.mjs", "test:browser": "playwright test --config playwright.config.mjs", "package": "vsce package --no-dependencies --githubBranch main --baseContentUrl https://github.com/jamesonmccowan/openscad.js/blob/main/extension --baseImagesUrl https://github.com/jamesonmccowan/openscad.js/raw/main/extension", "vscode:prepublish": "npm run build && npm run test:occt" },
+  "devDependencies": { "@vscode/vsce": "^4.0.0", "gcode-preview": "2.18.0", "occt-import-js": "0.0.23", "vscode-textmate": "^9.2.0", "vscode-oniguruma": "^2.0.1" }
+}

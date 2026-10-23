@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "reviewed": "2026-10-19",
+  "packages": {
+    "manifold-3d": "3.5.4",
+    "straight-skeleton": "1.1.0"
+  },
+  "manifold": {
+    "revision": "ce50d78021d64507f89e8c9fc2c2e51018117857",
+    "npmIntegrity": "sha512-WWsme5HabwLHVcWPHT9m+s7mdmDVSEvCny+uXH1E7jEc8FbFUgM75C3Dh6NVw57Eeh3Ow7+xHCuXfxDMOemi9A==",
+    "workflow": "https://github.com/elalish/manifold/blob/ce50d78021d64507f89e8c9fc2c2e51018117857/.github/workflows/publish_npm.yml",
+    "attestationSignatureVerified": false,
+    "emscripten": "5.0.2",
+    "clipper2Revision": "46f639177fe418f9689e8ddb74f08a870c71f5b4",
+    "embeddedComponents": [
+      "Manifold (Apache-2.0)",
+      "Clipper2 (BSL-1.0), with upstream carry-patch",
+      "tbtSVD adaptation (MIT)",
+      "dset adaptation (Zlib)",
+      "Sun/FreeBSD/musl math (retained permission notice)",
+      "PhysX distance adaptations (BSD-3-Clause)",
+      "Emscripten and C/C++ runtimes (retained notices)"
+    ],
+    "excludedFromKernel": [
+      "oneTBB: MANIFOLD_PAR=OFF",
+      "GoogleTest: separate test executable",
+      "Assimp, nanobind and Tracy: disabled",
+      "npm glTF/image tooling: not copied"
+    ],
+    "independentRebuild": false
+  },
+  "roof": {
+    "emscripten": "4.0.23",
+    "boost": "1.83.0",
+    "voronoiRebuildByteIdentical": true,
+    "straightSkeletonRebundleByteIdentical": true,
+    "esbuild": "0.25.12",
+    "localSourcePatches": []
+  },
+  "inputs": [
+    {
+      "path": "node_modules/manifold-3d/manifold.js",
+      "sha256": "ca3c8a88df63bb3083013d1eb7f700bf23216594f6e98a2566e34f55d7341ce8"
+    },
+    {
+      "path": "node_modules/manifold-3d/manifold.wasm",
+      "sha256": "73e3b419ad31294f6b1cc478173944e50efc4a34bfdeeff0107bdfc12975f11c"
+    },
+    {
+      "path": "src/geometry/roof-voronoi.cpp",
+      "sha256": "9959ea1361e2e479e452b0c98650e2a3b819931a9a27ec9fd3f3f74af247f451"
+    },
+    {
+      "path": "scripts/build-roof.sh",
+      "sha256": "014dfd94ecae0a6fb20230c6fe3c13c8971692ba5e6ed9ee2d119c9ab2c314ea"
+    },
+    {
+      "path": "src/geometry/roof-voronoi-wasm.js",
+      "sha256": "d3e9c96b380619a772903134a1e88de1d155202789831233762d84ee7fac9dd4"
+    },
+    {
+      "path": "src/geometry/roof-voronoi-wasm.wasm",
+      "sha256": "79d04e9485d1760a845d7060e7e6fe074e41f7a4a458180268a6b5e75d164c73"
+    },
+    {
+      "path": "src/geometry/roof-straight-bundle.js",
+      "sha256": "b5ac8cff3a5981e490b51cb646edcf5696a057ea9cc85305140ef70ed77b0f0f"
+    }
+  ],
+  "files": [
+    {
+      "path": "manifold/SVD.NOTICE",
+      "sha256": "f77c57d024aa1c11f90202ddfe1454e2d910d9e9ba9f946e773b23017cc50a86",
+      "source": "https://github.com/elalish/manifold/blob/ce50d78021d64507f89e8c9fc2c2e51018117857/src/svd.h"
+    },
+    {
+      "path": "manifold/disjoint-sets.NOTICE",
+      "sha256": "65b42fe78dd16d0c1b038efc5d8108164f42bd123f9d5650d8d6ca8576c429d8",
+      "source": "https://github.com/elalish/manifold/blob/ce50d78021d64507f89e8c9fc2c2e51018117857/src/disjoint_sets.h"
+    },
+    {
+      "path": "manifold/math.NOTICE",
+      "sha256": "fab59bf30f8584efc423cafe2e71d9f055b165708a505f80209db0ba34ea7b27",
+      "source": "https://github.com/elalish/manifold/blob/ce50d78021d64507f89e8c9fc2c2e51018117857/include/manifold/math.h"
+    },
+    {
+      "path": "manifold/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "source": "https://github.com/elalish/manifold/blob/ce50d78021d64507f89e8c9fc2c2e51018117857/LICENSE"
+    },
+    {
+      "path": "manifold/PhysX.LICENSE",
+      "sha256": "eb3e67b17b48c56ef26d8bf6634c0837503fefc28a916f98d4f02272eda50011",
+      "source": "https://github.com/NVIDIA-Omniverse/PhysX/blob/b53b957dc7e0a3728996de86d81380977fedc940/LICENSE.md"
+    },
+    {
+      "path": "manifold/Clipper2.LICENSE",
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+      "source": "https://github.com/AngusJohnson/Clipper2/blob/46f639177fe418f9689e8ddb74f08a870c71f5b4/LICENSE"
+    },
+    {
+      "path": "emscripten-5.0.2/LICENSE",
+      "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86",
+      "source": "https://github.com/emscripten-core/emscripten/blob/5.0.2/LICENSE"
+    },
+    {
+      "path": "emscripten-5.0.2/AUTHORS",
+      "sha256": "8585fa1b981f576f52806833481323007ccac5c00f31a873215e31c0f42820f0",
+      "source": "https://github.com/emscripten-core/emscripten/blob/5.0.2/AUTHORS"
+    },
+    {
+      "path": "emscripten-5.0.2/musl.COPYRIGHT",
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+      "source": "https://github.com/emscripten-core/emscripten/blob/5.0.2/system/lib/libc/musl/COPYRIGHT"
+    },
+    {
+      "path": "emscripten-5.0.2/libcxx.LICENSE",
+      "sha256": "539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b",
+      "source": "https://github.com/emscripten-core/emscripten/blob/5.0.2/system/lib/libcxx/LICENSE.TXT"
+    },
+    {
+      "path": "emscripten-5.0.2/libcxxabi.LICENSE",
+      "sha256": "e2b35be49f7284a45b7baca8fc7b3ab7440e7902392b2528a457816b5bb2a15c",
+      "source": "https://github.com/emscripten-core/emscripten/blob/5.0.2/system/lib/libcxxabi/LICENSE.TXT"
+    },
+    {
+      "path": "emscripten-5.0.2/compiler-rt.LICENSE",
+      "sha256": "1a8f1058753f1ba890de984e48f0242a3a5c29a6a8f2ed9fd813f36985387e8d",
+      "source": "https://github.com/emscripten-core/emscripten/blob/5.0.2/system/lib/compiler-rt/LICENSE.TXT"
+    },
+    {
+      "path": "emscripten-5.0.2/libunwind.LICENSE",
+      "sha256": "b5efebcaca80879234098e52d1725e6d9eb8fb96a19fce625d39184b705f7b6d",
+      "source": "https://github.com/emscripten-core/emscripten/blob/5.0.2/system/lib/libunwind/LICENSE.TXT"
+    },
+    {
+      "path": "emscripten-5.0.2/llvm-libc.LICENSE",
+      "sha256": "ebcd9bbf783a73d05c53ba4d586b8d5813dcdf3bbec50265860ccc885e606f47",
+      "source": "https://github.com/emscripten-core/emscripten/blob/5.0.2/system/lib/llvm-libc/LICENSE.TXT"
+    },
+    {
+      "path": "emscripten-5.0.2/dlmalloc.c",
+      "sha256": "c008dc3c2b005ba822efb1bf6187a9d7a6aecd096826c6f28c6f5ee62885053d",
+      "source": "https://github.com/emscripten-core/emscripten/blob/5.0.2/system/lib/dlmalloc.c"
+    },
+    {
+      "path": "emscripten-4.0.23/LICENSE",
+      "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86",
+      "source": "https://github.com/emscripten-core/emscripten/blob/4.0.23/LICENSE"
+    },
+    {
+      "path": "emscripten-4.0.23/AUTHORS",
+      "sha256": "8585fa1b981f576f52806833481323007ccac5c00f31a873215e31c0f42820f0",
+      "source": "https://github.com/emscripten-core/emscripten/blob/4.0.23/AUTHORS"
+    },
+    {
+      "path": "emscripten-4.0.23/musl.COPYRIGHT",
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+      "source": "https://github.com/emscripten-core/emscripten/blob/4.0.23/system/lib/libc/musl/COPYRIGHT"
+    },
+    {
+      "path": "emscripten-4.0.23/libcxx.LICENSE",
+      "sha256": "539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b",
+      "source": "https://github.com/emscripten-core/emscripten/blob/4.0.23/system/lib/libcxx/LICENSE.TXT"
+    },
+    {
+      "path": "emscripten-4.0.23/libcxxabi.LICENSE",
+      "sha256": "e2b35be49f7284a45b7baca8fc7b3ab7440e7902392b2528a457816b5bb2a15c",
+      "source": "https://github.com/emscripten-core/emscripten/blob/4.0.23/system/lib/libcxxabi/LICENSE.TXT"
+    },
+    {
+      "path": "emscripten-4.0.23/compiler-rt.LICENSE",
+      "sha256": "1a8f1058753f1ba890de984e48f0242a3a5c29a6a8f2ed9fd813f36985387e8d",
+      "source": "https://github.com/emscripten-core/emscripten/blob/4.0.23/system/lib/compiler-rt/LICENSE.TXT"
+    },
+    {
+      "path": "emscripten-4.0.23/libunwind.LICENSE",
+      "sha256": "b5efebcaca80879234098e52d1725e6d9eb8fb96a19fce625d39184b705f7b6d",
+      "source": "https://github.com/emscripten-core/emscripten/blob/4.0.23/system/lib/libunwind/LICENSE.TXT"
+    },
+    {
+      "path": "emscripten-4.0.23/llvm-libc.LICENSE",
+      "sha256": "ebcd9bbf783a73d05c53ba4d586b8d5813dcdf3bbec50265860ccc885e606f47",
+      "source": "https://github.com/emscripten-core/emscripten/blob/4.0.23/system/lib/llvm-libc/LICENSE.TXT"
+    },
+    {
+      "path": "emscripten-4.0.23/dlmalloc.c",
+      "sha256": "c008dc3c2b005ba822efb1bf6187a9d7a6aecd096826c6f28c6f5ee62885053d",
+      "source": "https://github.com/emscripten-core/emscripten/blob/4.0.23/system/lib/dlmalloc.c"
+    },
+    {
+      "path": "roof/straight-skeleton.LICENSE",
+      "sha256": "d1b785a270be7343eb47f204d51357de04cc6a97b0fe6bbe8ec6c24816fb5f68",
+      "source": "https://www.npmjs.com/package/straight-skeleton/v/1.1.0"
+    },
+    {
+      "path": "manifold/publish_npm.yml",
+      "sha256": "66668b1bd46347a076181d0a3ec5c5c373d76bb8cd1b8e3d67f9fe78a159a8f5",
+      "source": "https://github.com/elalish/manifold/blob/ce50d78021d64507f89e8c9fc2c2e51018117857/.github/workflows/publish_npm.yml"
+    },
+    {
+      "path": "manifold/clipper2.patch",
+      "sha256": "88763e9a0b2ad9ec036baeaf00317090621aa98c9754869e856ba16080ea8039",
+      "source": "https://github.com/elalish/manifold/blob/ce50d78021d64507f89e8c9fc2c2e51018117857/cmake/patches/0001-clipper2-no-iostream.patch"
+    },
+    {
+      "path": "manifold/npm-attestations.json",
+      "sha256": "c8afb3f189a55d5697e82ed0a486880c8a43c54fd0f32a59730010ff83f08b0d",
+      "source": "https://registry.npmjs.org/-/npm/v1/attestations/manifold-3d@3.5.4"
+    }
+  ]
+}

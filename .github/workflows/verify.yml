@@ -1,0 +1,135 @@
+name: Verify
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FORCE_COLOR: '0'
+
+jobs:
+  native:
+    name: Node, Native Oracle And Types
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install JavaScript Dependencies
+        run: npm install --no-audit --no-fund
+      - name: Install Headless Oracle Build Dependencies
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo -n apt-get update
+          sudo -n apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build pkg-config bison flex \
+            libcgal-dev libgmp-dev libmpfr-dev libeigen3-dev \
+            libboost-regex-dev libboost-program-options-dev \
+            libharfbuzz-dev libfontconfig1-dev libfreetype6-dev libglib2.0-dev \
+            libdouble-conversion-dev libzip-dev libxml2-dev libssl-dev \
+            libtbb-dev fonts-liberation python3
+      - name: Build And Verify Pinned Native Oracle
+        run: bash scripts/build-reference.sh
+      - name: Run Node And Native Differential Tests
+        run: npm run test:node
+      - name: Check Public Declarations
+        run: npm run test:types
+
+  browsers:
+    name: Browser (${{ matrix.browser }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install JavaScript Dependencies
+        run: npm install --no-audit --no-fund
+      - name: Install Browser And Host Dependencies
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+      - name: Run Shared Browser Fixtures
+        run: xvfb-run -a npm run test:browser -- --project=${{ matrix.browser }} --workers=2
+      - name: Upload Browser Results And Failure Traces
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-results-${{ matrix.browser }}
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  extension:
+    name: Extension Build, Tests And VSIX
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      OPENSCAD_RELEASE_CHECK: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Root And Extension Dependencies
+        run: |
+          npm install --no-audit --no-fund
+          npm --prefix extension install --no-audit --no-fund
+      - name: Install Chromium And Host Dependencies
+        run: npx playwright install --with-deps chromium
+      - name: Build Extension And Parent Distribution
+        run: npm --prefix extension run build
+      - name: Run Extension Unit Tests
+        run: npm --prefix extension test
+      - name: Verify Packaged Runtime, Sources And Notices
+        run: npm --prefix extension run test:occt
+      - name: Run Extension Webview Browser Tests
+        run: npm --prefix extension run test:browser -- --workers=2
+      - name: Package And Inspect VSIX
+        run: |
+          mkdir -p .release-check
+          npm --prefix extension run package -- --out "$PWD/.release-check/extension.vsix"
+          node scripts/verify-release-artifacts.js .release-check/extension.vsix
+          cd .release-check
+          sha256sum extension.vsix > SHA256SUMS
+      - name: Upload Verified CI Candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-ci-candidate
+          path: |
+            .release-check/extension.vsix
+            .release-check/SHA256SUMS
+          if-no-files-found: error
+          retention-days: 7
+      - name: Upload Extension Failure Traces
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-browser-results
+          path: |
+            extension/test-results/
+            extension/playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7

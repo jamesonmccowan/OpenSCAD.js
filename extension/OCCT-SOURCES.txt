@@ -1,0 +1,96 @@
+STEP IMPORTER: LICENSES, SOURCE, REBUILDING AND REPLACEMENT
+
+This extension uses facilities provided by Open CASCADE Technology (OCCT).
+occt-import-js 0.0.23 is LGPL-2.1; OCCT 7.6.1 is LGPL-2.1 with the Open
+CASCADE exception. These components are not relicensed under the project's
+Apache-2.0 license. See licenses/occt-import-js/ for both LGPL texts, the
+exception, runtime notices and provenance.json with source URLs and hashes.
+The libraries are provided WITHOUT ANY WARRANTY, as stated in their licenses.
+
+SOURCE DELIVERY
+
+Every built VSIX includes these complete upstream source archives under
+licenses/occt-import-js/sources/:
+
+  importer.tar.gz: c2148e54b456b571238d35cac037d304053d64b2
+  occt.tar.gz:     d2abb6d844231cb8f29be6894440874a4700e4a5
+  emscripten.tar.gz: Emscripten 3.1.69 sources, including runtime libraries
+
+The importer archive alone does not contain its OCCT submodule. Extract
+occt.tar.gz into the importer's occt/ directory as shown below. Source-file
+copyright and third-party notices are retained in the archives. No local
+patches are applied to the importer/OCCT sources or the distributed npm
+JS/WASM pair. CRLF/LF differences exist between npm and GitHub text files.
+The matched published binary and repository are provenance evidence, not
+an attestation of the upstream publisher's build environment.
+
+You may extract the archives from the installed extension or unzip the VSIX
+and find them beneath extension/licenses/occt-import-js/sources/. Source is
+delivered with the binary, not by a promise to fetch a homepage later.
+Keep these source archives and notices with redistributed binary packages.
+
+REBUILD ON LINUX
+
+Prerequisites: tar, Git, Python 3, CMake, Ninja and Emscripten 3.1.69.
+The compiler SDK is a build tool, not required to run the extension.
+In an empty working directory, with SOURCES set to the absolute path of the
+sources/ directory described above:
+
+  mkdir importer
+  tar -xzf "$SOURCES/importer.tar.gz" --strip-components=1 -C importer
+  mkdir -p importer/occt
+  tar -xzf "$SOURCES/occt.tar.gz" --strip-components=1 -C importer/occt
+  git clone https://github.com/emscripten-core/emsdk.git
+  git -C emsdk checkout a36df02dc438e8b02f91122a4c62eeecb6784272
+  ./emsdk/emsdk install 3.1.69
+  ./emsdk/emsdk activate 3.1.69
+  . ./emsdk/emsdk_env.sh
+  emcmake cmake -S importer -B importer/build/wasm -G Ninja -DCMAKE_BUILD_TYPE=Release
+  cmake --build importer/build/wasm --parallel 4
+
+The outputs are importer/build/wasm/Release/occt-import-js.js and
+importer/build/wasm/Release/occt-import-js.wasm. The upstream Windows recipe
+is tools/setup_emscripten_win.bat followed by tools/build_wasm_win_dist.bat;
+it selects Emscripten 3.1.69 and MinGW 7.1.0 and includes upstream tests.
+Both recipes use the supplied CMakeLists.txt. The Linux commands select
+Ninja instead of the Windows make program; they do not patch library code.
+Bit-for-bit equivalence to the npm binary is not promised.
+
+Verification on 2026-10-19: these Linux commands built the unpatched sources
+successfully using Emscripten 3.1.69. The output passed the extension's Node
+worker checks (STEP dimensions, volume and malformed-input rejection) and
+four Chromium STEP-viewer tests, including STL conversion. The rebuilt JS
+matches upstream LF text; the rebuilt WASM differs from npm's WASM. This
+verifies buildability and tested API compatibility, not bit-identical
+reproducibility or equivalence for all models. Output hashes are recorded
+in provenance.json under rebuildVerification. The extension continues to
+ship the reviewed, unmodified npm binary pair.
+
+REPLACE THE LIBRARY
+
+Locate the active extension directory with VS Code's
+"Developer: Open Extensions Folder" command (or the remote extensions
+directory when running over SSH). Close model viewers, then close that
+VS Code extension host before changing its files. Make a backup outside
+the extension directory, and replace BOTH files:
+
+  media/vendor/occt/occt-import-js.js
+  media/vendor/occt/occt-import-js.wasm
+
+Restart VS Code and open a STEP model. The extension host loads the JS
+factory from this directory in a Node worker; it resolves the adjacent
+WASM. There is no runtime hash/signature check on this pair. Preserve the
+occtimportjs module factory and ReadFile('step', bytes, parameters) API.
+The extension consumes result.success and result.meshes, including each
+mesh's attributes.position.array and index.array.
+
+Library modification for your own use and reverse engineering for debugging
+such modifications are permitted. No project-specific restriction is imposed
+on those LGPL rights. Upgrading/reinstalling the extension can overwrite a
+local replacement; keep your modified pair and source elsewhere.
+
+The development packaging hash checks apply to our reviewed release inputs,
+not user replacements in an installed extension. If distributing a modified
+library, update its notices, source delivery and provenance accordingly.
+The extension's calling code (src/occt-worker.cjs and src/stl-editor.cjs)
+is included as source in the VSIX.

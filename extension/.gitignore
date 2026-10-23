@@ -1,0 +1,9 @@
+media/
+licenses/
+LICENSE
+THIRD_PARTY_NOTICES.md
+node_modules/
+.occt-cache/
+package-lock.json
+*.vsix
+test-results/

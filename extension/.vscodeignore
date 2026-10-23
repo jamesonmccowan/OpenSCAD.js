@@ -1,0 +1,12 @@
+.vscode/**
+tests/**
+webview/**
+scripts/**
+node_modules/**
+.occt-cache/**
+package-lock.json
+*.vsix
+playwright.config.mjs
+SPECIFICATION.md
+.gitignore
+test-results/**

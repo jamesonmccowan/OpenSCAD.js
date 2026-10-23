@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenSCAD.js icon study</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./icon-16.png">
+  <style>
+    body { margin: 2rem auto; max-width: 900px; padding: 0 1rem; background: #eef1f5; color: #172330; font: 16px/1.5 system-ui, sans-serif; }
+    h1 { margin-bottom: .25rem; }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .tile { border-radius: 20px; padding: 24px; display: grid; place-items: center; background: white; }
+    .dark { background: #14202f; color: #f5f8ff; }
+    .hero { width: min(100%, 280px); height: auto; }
+    .sizes { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 24px; }
+    figure { margin: 12px 0; text-align: center; }
+    figcaption { font-size: 12px; opacity: .8; }
+    code { font-size: .9em; }
+    @media (max-width: 500px) { .pair { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>OpenSCAD.js icon study</h1>
+  <p>A blue cube with three intersecting square tunnels. Modeled and compiled in OpenSCAD.js;
+    rendered locally with Three.js. An independent project mark, not an OpenSCAD affiliation badge.</p>
+  <div class="pair">
+    <div class="tile"><img class="hero" src="./icon-512.png" width="512" height="512" alt="Blue cube with centered square openings through its top and both visible sides"></div>
+    <div class="tile dark"><img class="hero" src="./icon-512.png" width="512" height="512" alt="The same icon against a dark background"></div>
+    <div class="tile sizes">
+      <figure><img src="./icon-16.png" width="16" height="16" alt="16 pixel icon"><figcaption>16px</figcaption></figure>
+      <figure><img src="./icon-32.png" width="32" height="32" alt="32 pixel icon"><figcaption>32px</figcaption></figure>
+      <figure><img src="./icon-48.png" width="48" height="48" alt="48 pixel icon"><figcaption>48px</figcaption></figure>
+      <figure><img src="./icon-128.png" width="128" height="128" alt="128 pixel icon"><figcaption>128px</figcaption></figure>
+    </div>
+    <div class="tile dark sizes">
+      <figure><img src="./icon-16.png" width="16" height="16" alt="16 pixel icon on dark"><figcaption>16px</figcaption></figure>
+      <figure><img src="./icon-32.png" width="32" height="32" alt="32 pixel icon on dark"><figcaption>32px</figcaption></figure>
+      <figure><img src="./icon-48.png" width="48" height="48" alt="48 pixel icon on dark"><figcaption>48px</figcaption></figure>
+      <figure><img src="./icon-128.png" width="128" height="128" alt="128 pixel icon on dark"><figcaption>128px</figcaption></figure>
+    </div>
+  </div>
+  <p><a href="./icon.scad">SCAD source</a> &middot; <a href="./icon-512.png">512px transparent PNG</a>
+    &middot; Regenerate with <code>npm run build:icon</code>.</p>
+</body>
+</html>

@@ -1,0 +1,17 @@
+.vscode/
+!extension/.vscode/
+!extension/.vscode/launch.json
+!extension/.vscode/tasks.json
+node_modules/
+test-results/
+playwright-report/
+package-lock.json
+dist/
+.dist-build-*/
+.release-check/
+src/studio/editor-bundle.js
+src/studio/editor-bundle.js.LEGAL.txt
+.openscad-model.json
+*.png
+!branding/icon-*.png
+!extension/media/icon.png

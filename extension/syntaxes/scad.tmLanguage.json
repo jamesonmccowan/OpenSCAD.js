@@ -1,0 +1,18 @@
+{
+  "name": "OpenSCAD", "scopeName": "source.scad",
+  "patterns": [
+    { "name": "comment.line.double-slash.scad", "begin": "//", "end": "$" },
+    { "name": "comment.block.scad", "begin": "/\\*", "end": "\\*/" },
+    { "name": "string.quoted.double.scad", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.scad", "match": "\\\\." }] },
+    { "name": "meta.import.scad", "begin": "\\b(include|use)\\s*(<)", "beginCaptures": { "1": { "name": "keyword.control.import.scad" }, "2": { "name": "punctuation.definition.string.begin.scad" } }, "end": ">", "contentName": "string.other.path.scad" },
+    { "name": "keyword.control.scad", "match": "\\b(if|else|for|intersection_for|let|each|assert|echo)\\b" },
+    { "name": "storage.type.scad", "match": "\\b(module|function)\\b" },
+    { "name": "constant.language.scad", "match": "\\b(true|false|undef)\\b" },
+    { "name": "variable.language.scad", "match": "\\$[A-Za-z_][A-Za-z_0-9]*" },
+    { "name": "constant.numeric.scad", "match": "(?<![\\w$])(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?" },
+    { "name": "support.function.scad", "match": "\\b(cube|sphere|cylinder|polyhedron|square|circle|polygon|text|import|surface|union|difference|intersection|hull|minkowski|translate|rotate|scale|resize|mirror|multmatrix|color|offset|projection|linear_extrude|rotate_extrude|render|children|sin|cos|tan|asin|acos|atan|atan2|abs|ceil|floor|round|sqrt|pow|exp|ln|log|len|str|concat|lookup|search|rands|min|max|norm|cross|version|version_num|is_undef|is_bool|is_num|is_string|is_list|is_function)\\b" },
+    { "name": "entity.name.function.scad", "match": "\\b[A-Za-z_][A-Za-z_0-9]*(?=\\s*\\()" },
+    { "name": "keyword.operator.scad", "match": "[+*/%=!<>?:&|^~-]+" },
+    { "name": "punctuation.separator.scad", "match": "[,;]" }
+  ]
+}
